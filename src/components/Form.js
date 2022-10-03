@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputText from "./InputText";
 import useFetch from "../hooks/useFetch";
+import styles from "../styles/InputText.module.css";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
@@ -16,7 +17,7 @@ const Form = () => {
         type="text"
         id=""
         value={inputValue}
-        classes=""
+        classes={styles.input}
         onChange={handleInputChange}
         validate=""
         placeholder="Search free high-resolution photos"
