@@ -9,7 +9,8 @@ const Form = () => {
     setInputValue(e.target.value);
   };
   useFetch(
-    `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_API_KEY}`
+    `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`,
+    inputValue
   );
   return (
     <form>
