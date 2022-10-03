@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-require("dotenv").config();
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);
