@@ -1,5 +1,5 @@
 import "./App.css";
-import useFetch from "./hooks/useFetch";
+import Form from "./components/Form";
 
 function App() {
   return (
@@ -13,9 +13,7 @@ function App() {
           </a>
         </p>
         <p>Powered by creators everywhere.</p>
-        {useFetch(
-          `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_API_KEY}`
-        )}
+        <Form />
       </div>
     </div>
   );
