@@ -13,7 +13,7 @@ const Form = () => {
     inputValue
   );
   return (
-    <form>
+    <form class={styles["form-input"]}>
       <InputText
         type="text"
         id=""
