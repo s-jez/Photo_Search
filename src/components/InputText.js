@@ -1,7 +1,7 @@
 import React from "react";
 
 const InputText = (props) => {
-  const { id, value, classes, onChange, validate, placeholder } = props;
+  const { id, value, classes, onChange, onBlur, validate, placeholder } = props;
   return (
     <input
       type="text"
@@ -9,6 +9,7 @@ const InputText = (props) => {
       value={value}
       className={classes}
       onChange={onChange}
+      onBlur={onBlur}
       validate={validate}
       placeholder={placeholder}
     />
