@@ -15,3 +15,9 @@
   background-color: white;
   border-radius: 6px;
 }
+.input-suggestion {
+  color: #000;
+  font-size: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
