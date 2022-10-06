@@ -23,7 +23,7 @@ const Form = () => {
     if (inputValue.length >= 3) {
       matches = data.filter((searchVal) => {
         const regex = new RegExp(`${inputValue}`, "gi");
-        return searchVal.tags[0]?.title?.match(regex);
+        return searchVal.alt_description?.match(regex);
       });
     }
     setSuggestions(matches);
@@ -52,7 +52,7 @@ const Form = () => {
             key={i}
             onClick={() => onSuggestHandler(suggestion)}
           >
-            {suggestion}
+            {suggestion.alt_description}
           </div>
         ))}
     </form>
