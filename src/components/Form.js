@@ -61,7 +61,9 @@ const Form = () => {
           }
         })
       ) : (
-        <div className={styles["input-suggestion"]}>There is no hint!</div>
+        <div className={inputValue !== "" && styles["input-suggestion"]}>
+          {inputValue !== "" && "There is no hint!"}
+        </div>
       )}
     </form>
   );
