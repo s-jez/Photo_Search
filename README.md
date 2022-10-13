@@ -6,7 +6,7 @@ This project purpose is to search images from Unsplash API.
 Fetch data from API - Done <br />
 Custom Input Component - Done <br/>
 Auto complete search <br />
-Routing /photos - search results with images and tags from API <br/>
+Photos page and /photos routing to search image from input from API <br />
 Modal window on image click show informations about image.
 
 
