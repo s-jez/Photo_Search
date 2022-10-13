@@ -13,7 +13,7 @@ const Form = () => {
       const res = await fetch(SEARCH_PHOTOS_URL);
       const data = await res.json();
       setData(data.results);
-      console.log(data);
+      console.log(data.results);
     };
     fetchData();
   }, [SEARCH_PHOTOS_URL]);
@@ -23,7 +23,8 @@ const Form = () => {
     if (inputValue.length >= 3) {
       matches = data.filter((searchVal) => {
         const regex = new RegExp(`${inputValue}`, "gi");
-        return searchVal.alt_description?.match(regex);
+        const hintValue = searchVal.tags[0]?.source?.title?.match(regex);
+        return hintValue;
       });
     }
     setSuggestions(matches);
@@ -45,16 +46,23 @@ const Form = () => {
         validate=""
         placeholder="Search free high-resolution photos"
       />
-      {suggestions &&
-        suggestions.map((suggestion, i) => (
-          <div
-            className={styles["input-suggestion"]}
-            key={i}
-            onClick={() => onSuggestHandler(suggestion)}
-          >
-            {suggestion.alt_description}
-          </div>
-        ))}
+      {suggestions.length !== 0 ? (
+        suggestions.map((suggestion, i) => {
+          if (suggestion.alt_description !== null) {
+            return (
+              <div
+                className={styles["input-suggestion"]}
+                key={i}
+                onClick={() => onSuggestHandler(suggestion)}
+              >
+                {suggestion.alt_description}
+              </div>
+            );
+          }
+        })
+      ) : (
+        <div className={styles["input-suggestion"]}>There is no hint!</div>
+      )}
     </form>
   );
 };
