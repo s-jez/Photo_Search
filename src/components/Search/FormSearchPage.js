@@ -1,7 +1,7 @@
 import PhotoGallery from "../Photos/PhotoGallery";
 import PhotoSearch from "./PhotoSearch";
 
-const FormSearch = () => {
+const FormSearchPage = () => {
   return (
     <>
       <PhotoSearch />
@@ -9,4 +9,4 @@ const FormSearch = () => {
     </>
   );
 };
-export default FormSearch;
+export default FormSearchPage;
