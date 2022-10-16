@@ -1,8 +1,13 @@
-body {
+.App__card {
   background-image: url(./images/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .App {
@@ -15,11 +20,4 @@ body {
 }
 .App a {
   color: aliceblue;
-}
-.App__card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 50%;
 }

@@ -1,4 +1,10 @@
+import PhotoForm from "../Photos/PhotoForm";
+
 const PhotoSearch = () => {
-  return <h1>Photo Search</h1>;
+  return (
+    <>
+      <PhotoForm />
+    </>
+  );
 };
 export default PhotoSearch;
