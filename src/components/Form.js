@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import InputText from "./InputText";
 import styles from "../styles/InputText.module.css";
+import formStyles from "../styles/Form.module.css";
+import { Link } from "react-router-dom";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
@@ -8,6 +10,7 @@ const Form = () => {
   const [data, setData] = useState([]);
 
   let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(SEARCH_PHOTOS_URL);
@@ -31,18 +34,17 @@ const Form = () => {
     setInputValue(e.target.value);
   };
   const onSuggestHandler = (text) => {
-    setInputValue(text);
+    // setInputValue(text);
     setSuggestions([]);
   };
   return (
-    <form className={styles["form-input"]}>
+    <form className={formStyles["form-input"]}>
       <InputText
         type="text"
         id=""
         value={inputValue}
         classes={styles.input}
         onChange={inputChangeHandler}
-        onBlur={() => setSuggestions([])}
         validate=""
         placeholder="Search free high-resolution photos"
       />
@@ -54,6 +56,8 @@ const Form = () => {
                 className={styles["input-suggestion"]}
                 key={i}
                 onClick={() => onSuggestHandler(suggestion)}
+                as={Link}
+                to={"/photos"}
               >
                 {suggestion.alt_description}
               </div>
