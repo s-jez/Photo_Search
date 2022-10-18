@@ -9,6 +9,7 @@ const FormPhoto = () => {
   const { text } = state;
   const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
+
   const formSubmitHandler = (ev) => {
     ev.preventDefault();
   };
