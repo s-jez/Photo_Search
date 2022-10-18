@@ -1,19 +1,32 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import InputText from "../InputText";
 import styles from "../../styles/InputText.module.css";
 import PhotoGallery from "./PhotoGallery";
 import formStyles from "../../styles/Form.module.css";
+import { useLocation } from "react-router-dom";
 
 const PhotoForm = () => {
-  const [inputValue, setInputValue] = useState("");
+  const {state} = useLocation()
+  const {text} = state;
+  const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
   const formSubmitHandler = (ev) => {
     ev.preventDefault();
   }
   const formChangeHandler = (ev) => {
     setInputValue(ev.target.value);
-    setData(...inputValue)
   }
+  let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(SEARCH_PHOTOS_URL);
+      const data = await res.json();
+      setData(data.results);
+      console.log(data.results);
+    };
+    fetchData();
+  }, [SEARCH_PHOTOS_URL]);
   return (
     <>
       <form onSubmit={formSubmitHandler}>

@@ -37,8 +37,7 @@ const Form = () => {
   };
   const onSuggestHandler = (text) => {
     // setInputValue(text);
-    setSuggestions([]);
-    navigate("/photos")
+    navigate(`/photos`, {state: {text: text.alt_description}});
   };
   return (
     <form className={formStyles["form-input"]}>

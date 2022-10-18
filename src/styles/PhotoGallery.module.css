@@ -1,0 +1,13 @@
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1200px;
+    list-style: none;
+    gap: 50px;
+    padding: 20px;
+}
+.photo img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
