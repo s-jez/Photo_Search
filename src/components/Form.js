@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import InputText from "./InputText";
 import styles from "../styles/InputText.module.css";
 import formStyles from "../styles/Form.module.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [data, setData] = useState([]);
+
+  const navigate = useNavigate();
 
   let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
 
@@ -25,7 +27,7 @@ const Form = () => {
     let matches = [];
     if (inputValue.length >= 3) {
       matches = data.filter((searchVal) => {
-        const regex = new RegExp(`${inputValue}`, "gi");
+        const regex = new RegExp(`${inputValue.toLowerCase()}`, "gi");
         const hintValue = searchVal.tags[0]?.source?.title?.match(regex);
         return hintValue;
       });
@@ -36,6 +38,7 @@ const Form = () => {
   const onSuggestHandler = (text) => {
     // setInputValue(text);
     setSuggestions([]);
+    navigate("/photos")
   };
   return (
     <form className={formStyles["form-input"]}>
@@ -56,7 +59,6 @@ const Form = () => {
                 className={styles["input-suggestion"]}
                 key={i}
                 onClick={() => onSuggestHandler(suggestion)}
-                as={Link}
                 to={"/photos"}
               >
                 {suggestion.alt_description}
