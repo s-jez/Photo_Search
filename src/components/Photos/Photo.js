@@ -1,13 +1,23 @@
 import styles from "../../styles/PhotoGallery.module.css";
+import { useState } from "react";
+import Modal from "../Modals/Modal";
 const Photo = (props) => {
+    const [modalShow, setModalShow] = useState();
     const handlePhotoClick = () => {
-        // show modal window
-        console.log('clicked!');
+        setModalShow(true);
     }
+    const handleCloseModal = () => {
+        setModalShow(false)
+    }   
     return (
-        <a className={styles.photo} onClick={handlePhotoClick} href="/">
-            <img alt={props.data.alt?.description} src={props.data.urls.small}></img>
-        </a>
+        <>
+        {!modalShow ?
+            <div className={styles.photo} onClick={handlePhotoClick}>
+                <img alt={props.data.alt?.description} src={props.data.urls.small}></img>
+            </div>
+            : <Modal handleClose={handleCloseModal}/>
+        }
+        </>
     )
 };
 export default Photo;

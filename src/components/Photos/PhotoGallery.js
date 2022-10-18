@@ -7,7 +7,7 @@ const PhotoGallery = (props) => {
     return (
         <ul className={styles.gallery}>
             {data.map((item, i) =>
-                <li key={i}><Photo data={item}/></li>
+                <li key={i}><Photo data={item} id={item.id}/></li>
             )}
         </ul>
     )
