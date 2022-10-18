@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState} from "react";
 import InputText from "../InputText";
 import styles from "../../styles/InputText.module.css";
 import PhotoGallery from "./PhotoGallery";
 import formStyles from "../../styles/Form.module.css";
-import useFetch from "../../hooks/useFetch";
 
 const PhotoForm = () => {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState([]);
-  let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
-  const inputChangeHandler = (ev) => {
+  const formSubmitHandler = (ev) => {
+    ev.preventDefault();
+  }
+  const formChangeHandler = (ev) => {
     setInputValue(ev.target.value);
-  };
-  useFetch(SEARCH_PHOTOS_URL, inputValue)
+  }
   return (
     <>
-      <form>
+      <form onSubmit={formSubmitHandler}>
         <InputText
           type="text"
           id=""
           value={inputValue}
+          onChange={formChangeHandler}
           classes={styles["input-search"]}
-          onChange={inputChangeHandler}
           validate=""
           placeholder="Search for images..."
         />

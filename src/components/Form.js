@@ -48,7 +48,7 @@ const Form = () => {
         validate=""
         placeholder="Search free high-resolution photos"
       />
-      {suggestions.length !== 0 ? (
+      {suggestions.length !== 0 && (
         suggestions.map((suggestion, i) => {
           if (suggestion.alt_description !== null) {
             return (
@@ -64,9 +64,11 @@ const Form = () => {
             );
           }
         })
-      ) : (
-        <div className={inputValue !== "" && styles["input-suggestion"]}>
-          {inputValue !== "" && "There is no hint!"}
+      )
+    }
+    {suggestions.length === 0 && inputValue !== "" && (
+        <div className={styles["input-suggestion"]} href="/">
+          There is no hint!
         </div>
       )}
     </form>
