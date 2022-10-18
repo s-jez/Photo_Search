@@ -3,6 +3,7 @@ import InputText from "../InputText";
 import styles from "../../styles/InputText.module.css";
 import PhotoGallery from "./PhotoGallery";
 import formStyles from "../../styles/Form.module.css";
+import useFetch from "../../hooks/useFetch";
 
 const PhotoForm = () => {
   const [inputValue, setInputValue] = useState("");
@@ -11,20 +12,10 @@ const PhotoForm = () => {
   const inputChangeHandler = (ev) => {
     setInputValue(ev.target.value);
   };
-  const formSubmitHandler = () => {};
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(SEARCH_PHOTOS_URL);
-      const data = await res.json();
-      setData(data.results);
-      console.log(data);
-    };
-    fetchData();
-  }, [SEARCH_PHOTOS_URL]);
+  useFetch(SEARCH_PHOTOS_URL, inputValue)
   return (
     <>
-      <form onSubmit={formSubmitHandler}>
+      <form>
         <InputText
           type="text"
           id=""
@@ -40,7 +31,7 @@ const PhotoForm = () => {
         <span className={formStyles["form-result"]}>
           Results for: {inputValue}
         </span>
-        <PhotoGallery />
+        <PhotoGallery data={data} />
       </div>
     </>
   );
