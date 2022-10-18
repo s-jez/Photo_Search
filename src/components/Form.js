@@ -52,6 +52,7 @@ const Form = () => {
         placeholder="Search free high-resolution photos"
       />
       {suggestions.length !== 0 && (
+        // eslint-disable-next-line
         suggestions.map((suggestion, i) => {
           if (suggestion.alt_description !== null) {
             return (
