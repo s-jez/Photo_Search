@@ -1,21 +1,13 @@
-import "./App.css";
-import Form from "./components/Form";
+import React, { Fragment } from "react";
+import GlobalStyle from "./globalStyles";
+import MainContent from "./pages/MainContent";
 
 function App() {
   return (
-    <div className="App">
-      <div className="App__card">
-        <h1>Unsplash</h1>
-        <p>
-          The internet's source of{" "}
-          <a href="https://unsplash.com/" target="_blank" rel="noreferrer">
-            freely-usable images
-          </a>
-        </p>
-        <p>Powered by creators everywhere.</p>
-        <Form />
-      </div>
-    </div>
+    <Fragment>
+      <GlobalStyle />
+      <MainContent />
+    </Fragment>
   );
 }
 

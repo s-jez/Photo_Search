@@ -1,21 +1,20 @@
-import { useEffect, useState} from "react";
-import InputText from "../InputText";
-import styles from "../../styles/InputText.module.css";
-import PhotoGallery from "./PhotoGallery";
-import formStyles from "../../styles/Form.module.css";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import styles from "./Form.module.css";
+import InputText from "../Input/InputText";
+import PhotoGallery from "../Photos/PhotoGallery";
 
-const PhotoForm = () => {
-  const {state} = useLocation()
-  const {text} = state;
+const FormPhoto = () => {
+  const { state } = useLocation();
+  const { text } = state;
   const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
   const formSubmitHandler = (ev) => {
     ev.preventDefault();
-  }
+  };
   const formChangeHandler = (ev) => {
     setInputValue(ev.target.value);
-  }
+  };
   let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
 
   useEffect(() => {
@@ -40,14 +39,12 @@ const PhotoForm = () => {
           placeholder="Search for images..."
         />
       </form>
-      <div className={formStyles["form-gallery"]}>
+      <div className={styles["form-gallery"]}>
         <h1>{inputValue}</h1>
-        <span className={formStyles["form-result"]}>
-          Results for: {inputValue}
-        </span>
+        <span className={styles["form-result"]}>Results for: {inputValue}</span>
         <PhotoGallery data={data} />
       </div>
     </>
   );
 };
-export default PhotoForm;
+export default FormPhoto;

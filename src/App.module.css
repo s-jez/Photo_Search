@@ -1,5 +1,5 @@
 .App__card {
-  background-image: url(./images/bg.jpg);
+  background-image: url(../src/images/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

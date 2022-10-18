@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import InputText from "./InputText";
-import styles from "../styles/InputText.module.css";
-import formStyles from "../styles/Form.module.css";
 import { useNavigate } from "react-router-dom";
+import styles from "./Form.module.css";
+import InputText from "../Input/InputText";
+import inputStyles from "../Input/InputText.module.css";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
@@ -37,20 +37,20 @@ const Form = () => {
   };
   const onSuggestHandler = (text) => {
     // setInputValue(text);
-    navigate(`/photos`, {state: {text: text.alt_description}});
+    navigate(`/photos`, { state: { text: text.alt_description } });
   };
   return (
-    <form className={formStyles["form-input"]}>
+    <form className={styles["form-input"]}>
       <InputText
         type="text"
         id=""
         value={inputValue}
-        classes={styles.input}
+        classes={inputStyles.input}
         onChange={inputChangeHandler}
         validate=""
         placeholder="Search free high-resolution photos"
       />
-      {suggestions.length !== 0 && (
+      {suggestions.length !== 0 &&
         // eslint-disable-next-line
         suggestions.map((suggestion, i) => {
           if (suggestion.alt_description !== null) {
@@ -65,10 +65,8 @@ const Form = () => {
               </div>
             );
           }
-        })
-      )
-    }
-    {suggestions.length === 0 && inputValue !== "" && (
+        })}
+      {suggestions.length === 0 && inputValue !== "" && (
         <div className={styles["input-suggestion"]} href="/">
           There is no hint!
         </div>

@@ -1,10 +1,10 @@
 import PhotoGallery from "../Photos/PhotoGallery";
-import PhotoSearch from "./PhotoSearch";
+import FormPhoto from "./FormPhoto";
 
 const FormSearchPage = () => {
   return (
     <>
-      <PhotoSearch />
+      <FormPhoto />
       <PhotoGallery />
     </>
   );
