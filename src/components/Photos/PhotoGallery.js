@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const PhotoGallery = (props) => {
   const [modalShow, setModalShow] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
   const showModal = () => {
     setModalShow(() => !modalShow);
   };
@@ -21,20 +22,21 @@ const PhotoGallery = (props) => {
       ) : (
         <Modal handleClose={showModal}>
           <div style={{ position: "relative", height: "auto" }}>
-            {/* <span>{props.data?.user.username}</span> */}
-            {/* <img src={props.data?.user.profile_image.small} alt="" />
+            <span>{props.data[photoIndex].user.username}</span>
+            <img src={props.data[photoIndex].user.profile_image.small} alt="" />
             <div>
               <img
-                src={props.data?.urls.full}
-                alt={props.data?.alt_description}
+                src={props.data[photoIndex].urls.full}
+                alt={props.data[photoIndex].alt_description}
                 width={600}
                 height={600}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div>
               <span>Likes</span>
-              <p>{props.data?.likes}</p>
-            </div> */}
+              <p>{props.data[0].likes}</p>
+            </div>
           </div>
         </Modal>
       )}
