@@ -36,8 +36,12 @@ const Form = () => {
     setInputValue(e.target.value);
   };
   const onSuggestHandler = (text) => {
-    // setInputValue(text);
     navigate(`/photos`, { state: { text: text.alt_description } });
+  };
+  const handleKeyDown = (ev) => {
+    if (ev.keyCode === 13) {
+      navigate(`/photos`, { state: { text: data.alt_description } });
+    }
   };
   return (
     <form className={styles["form-input"]}>
@@ -49,6 +53,7 @@ const Form = () => {
         onChange={inputChangeHandler}
         validate=""
         placeholder="Search free high-resolution photos"
+        onKeyDown={handleKeyDown}
       />
       {suggestions.length !== 0 &&
         // eslint-disable-next-line
