@@ -12,6 +12,7 @@ const PhotoForm = () => {
   }
   const formChangeHandler = (ev) => {
     setInputValue(ev.target.value);
+    setData(...inputValue)
   }
   return (
     <>

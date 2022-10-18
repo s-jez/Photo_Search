@@ -7,9 +7,9 @@ const useFetch = (url, inputValue) => {
       const res = await fetch(url);
       const data = await res.json();
       setData(data);
-      console.log(data);
     };
+    console.log(data);
     fetchData();
-  }, [url, inputValue]);
+  }, [url, inputValue, data]);
 };
 export default useFetch;
