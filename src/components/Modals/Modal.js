@@ -7,7 +7,7 @@ const Modal = (props) => {
     <div className={styles.modal}>
       <div>{children}</div>
       <div>
-        <button onClick={handleClose}>Close</button>
+        <button onClick={handleClose}>Go back</button>
       </div>
     </div>
   );

@@ -7,8 +7,28 @@
   gap: 100px;
   place-items: center;
 }
+.photo {
+  display: flex;
+  justify-content: center;
+}
+.photo-modal {
+  max-width: 1440px;
+  padding: 5rem;
+  margin: auto;
+}
 .photo img {
   width: 400px;
   height: 400px;
   object-fit: cover;
+}
+.photo-avatar {
+  display: flex;
+  margin: 1rem 0rem;
+}
+.photo-avatar img {
+  border-radius: 30px;
+  margin-right: 5px;
+}
+.photo-avatar span {
+  margin: 0.25rem;
 }
