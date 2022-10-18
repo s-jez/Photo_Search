@@ -1,5 +1,5 @@
 import styles from "../../styles/PhotoGallery.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../Modals/Modal";
 const Photo = (props) => {
     const [modalShow, setModalShow] = useState();
@@ -9,6 +9,13 @@ const Photo = (props) => {
     const handleCloseModal = () => {
         setModalShow(false)
     }   
+    useEffect(() => {
+        if(modalShow) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "scroll";
+        }
+    }, [modalShow])
     return (
         <>
         {!modalShow ?
