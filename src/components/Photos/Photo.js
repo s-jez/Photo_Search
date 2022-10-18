@@ -15,7 +15,11 @@ const Photo = (props) => {
             <div className={styles.photo} onClick={handlePhotoClick}>
                 <img alt={props.data.alt?.description} src={props.data.urls.small}></img>
             </div>
-            : <Modal handleClose={handleCloseModal}/>
+            : <Modal handleClose={handleCloseModal}>
+                <h1>{props.data?.alt_description}</h1>
+                <p>{props.data?.description}</p>
+                <p>Likes: {props.data?.likes}</p>
+            </Modal>
         }
         </>
     )
