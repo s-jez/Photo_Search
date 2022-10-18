@@ -10,13 +10,14 @@ const FormPhoto = () => {
   const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
 
+  let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
+
   const formSubmitHandler = (ev) => {
     ev.preventDefault();
   };
   const formChangeHandler = (ev) => {
     setInputValue(ev.target.value);
   };
-  let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
 
   useEffect(() => {
     const fetchData = async () => {
