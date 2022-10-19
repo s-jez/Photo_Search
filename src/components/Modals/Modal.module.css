@@ -21,8 +21,8 @@
   justify-content: center;
 }
 .photo img {
-  width: 400px;
-  height: 400px;
+  width: 1200px;
+  height: 600px;
   object-fit: cover;
 }
 .photo-modal {
