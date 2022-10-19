@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import PhotoGallery from "../Photos/PhotoGallery";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
 
 const FormPhoto = () => {
   const { state } = useLocation();
@@ -10,7 +11,8 @@ const FormPhoto = () => {
   const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
 
-  let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
+  let SEARCH_PHOTOS_URL =
+    UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
 
   const formSubmitHandler = (ev) => {
     ev.preventDefault();

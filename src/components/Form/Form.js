@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import inputStyles from "../Input/InputText.module.css";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [data, setData] = useState([]);
-  
+
   const navigate = useNavigate();
-  
-  let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
+
+  let SEARCH_PHOTOS_URL =
+    UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +42,7 @@ const Form = () => {
   };
   const handleKeyDown = (ev) => {
     if (ev.keyCode === 13) {
-      navigate(`/photos`, { state: { text: data.alt_description } });
+      navigate(`/photos`, { state: { text: inputValue } });
     }
   };
   return (

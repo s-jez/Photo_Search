@@ -11,6 +11,6 @@ const useFetch = (url) => {
     fetchData();
     console.log(data);
     // eslint-disable-next-line
-  }, [url,]);
+  }, [url]);
 };
 export default useFetch;

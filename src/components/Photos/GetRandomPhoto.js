@@ -1,5 +1,4 @@
-let UNSPLASH_URL = `https://api.unsplash.com`;
-let UNSPLASH_KEY = `?client_id=${process.env.REACT_APP_API_KEY}`;
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
 
 let randomPhoto;
 const getRandomPhoto = () => {
@@ -9,10 +8,8 @@ const getRandomPhoto = () => {
       randomPhoto = data.urls.full;
     });
   console.log(randomPhoto);
-  if (randomPhoto === undefined) {
-    return "https://i.imgur.com/O0eAkcG.jpg";
-  } else {
-    return randomPhoto;
-  }
+  return randomPhoto === undefined
+    ? "https://i.imgur.com/O0eAkcG.jpg"
+    : randomPhoto;
 };
 export default getRandomPhoto;
