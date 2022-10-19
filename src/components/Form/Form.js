@@ -8,9 +8,9 @@ const Form = () => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [data, setData] = useState([]);
-
+  
   const navigate = useNavigate();
-
+  
   let SEARCH_PHOTOS_URL = `https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_API_KEY}&query=${inputValue}`;
 
   useEffect(() => {
