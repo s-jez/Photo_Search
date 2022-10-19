@@ -1,14 +1,20 @@
 import React from "react";
 import Form from "../components/Form/Form";
 import styles from "../../src/App.module.css";
-import getRandomPhoto from "../components/Photos/getRandomPhoto";
 import { useEffect, useState } from "react";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../utils/urls";
 
 const MainContent = () => {
   const [randomPhoto, setRandomPhoto] = useState("");
   useEffect(() => {
-    setRandomPhoto(getRandomPhoto);
-  }, [randomPhoto]);
+    fetch(UNSPLASH_URL + "/photos/random" + UNSPLASH_KEY, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setRandomPhoto(data.urls.full);
+      });
+  }, []);
   return (
     <>
       <div className={styles.App}>
