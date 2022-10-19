@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "../utils/urls";
 
 const MainContent = () => {
-  const [randomPhoto, setRandomPhoto] = useState("");
+  const [randomPhoto, setRandomPhoto] = useState(
+    "https://i.imgur.com/O0eAkcG.jpg"
+  );
   useEffect(() => {
-    fetch(UNSPLASH_URL + "/photos/random" + UNSPLASH_KEY, {
-      method: "GET",
-    })
+    fetch(UNSPLASH_URL + "/photos/random" + UNSPLASH_KEY)
       .then((response) => response.json())
       .then((data) => {
         setRandomPhoto(data.urls.full);
