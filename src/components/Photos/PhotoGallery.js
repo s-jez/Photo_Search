@@ -7,12 +7,15 @@ const PhotoGallery = (props) => {
   const [modalShow, setModalShow] = useState(false);
   // eslint-disable-next-line
   const [photoIndex, setPhotoIndex] = useState(0);
+
   const showModal = () => {
     setModalShow(() => !modalShow);
   };
+
   const handleClickHandler = (i) => {
     setPhotoIndex(i)
   }
+  
   return (
     <>
       {!modalShow ? (

@@ -4,6 +4,15 @@
   max-width: 1200px;
   list-style: none;
   padding: 35px;
-  gap: 100px;
+  gap: 80px;
   place-items: center;
+}
+.photo {
+  display: flex;
+  justify-content: center;
+}
+.photo img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
 }

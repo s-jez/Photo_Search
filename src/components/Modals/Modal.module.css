@@ -16,20 +16,19 @@
   border: 1px solid rgb(131, 131, 131);
   border-radius: 6px;
 }
-
 .photo {
   display: flex;
   justify-content: center;
-}
-.photo-modal {
-  max-width: 1440px;
-  padding: 5rem;
-  margin: auto;
 }
 .photo img {
   width: 400px;
   height: 400px;
   object-fit: cover;
+}
+.photo-modal {
+  max-width: 1440px;
+  padding: 5rem;
+  margin: auto;
 }
 .photo-avatar {
   display: flex;
