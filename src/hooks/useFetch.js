@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (url, inputValue) => {
+const useFetch = (url) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -8,8 +8,9 @@ const useFetch = (url, inputValue) => {
       const data = await res.json();
       setData(data);
     };
-    console.log(data);
     fetchData();
-  }, [url, inputValue, data]);
+    console.log(data);
+    // eslint-disable-next-line
+  }, [url,]);
 };
 export default useFetch;
