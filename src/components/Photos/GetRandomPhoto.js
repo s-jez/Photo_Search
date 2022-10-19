@@ -7,7 +7,6 @@ const getRandomPhoto = () => {
     .then((data) => {
       randomPhoto = data.urls.full;
     });
-  console.log(randomPhoto);
   return randomPhoto === undefined
     ? "https://i.imgur.com/O0eAkcG.jpg"
     : randomPhoto;

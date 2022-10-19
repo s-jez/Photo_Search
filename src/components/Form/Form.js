@@ -20,7 +20,6 @@ const Form = () => {
       const res = await fetch(SEARCH_PHOTOS_URL);
       const data = await res.json();
       setData(data.results);
-      console.log(data.results);
     };
     fetchData();
   }, [SEARCH_PHOTOS_URL]);
