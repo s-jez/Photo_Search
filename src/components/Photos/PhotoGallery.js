@@ -10,44 +10,21 @@ const PhotoGallery = (props) => {
   const showModal = () => {
     setModalShow(() => !modalShow);
   };
+  const handleClickHandler = (i) => {
+    setPhotoIndex(i)
+  }
   return (
     <>
       {!modalShow ? (
         <ul className={styles.gallery}>
           {props.data?.map((item, i) => (
-            <li key={i}>
+            <li key={i} onClick={() => handleClickHandler(i)}>
               <Photo data={item} photoIndex={i} showModal={showModal} />
             </li>
           ))}
         </ul>
       ) : (
-        <Modal handleClose={showModal}>
-          <div
-            style={{ position: "relative", height: "auto" }}
-            className={styles["photo-modal"]}
-          >
-            <div className={styles["photo-avatar"]}>
-              <img
-                src={props.data[photoIndex].user.profile_image.small}
-                alt=""
-              />
-              <span>{props.data[photoIndex].user.username}</span>
-            </div>
-            <div className={styles.photo}>
-              <img
-                src={props.data[photoIndex].urls.full}
-                alt={props.data[photoIndex].alt_description}
-                width={600}
-                height={600}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div>
-              <span>Likes</span>
-              <p>{props.data[photoIndex].likes}</p>
-            </div>
-          </div>
-        </Modal>
+        <Modal handleClose={showModal} data={props.data[photoIndex]}></Modal>
       )}
     </>
   );
