@@ -1,5 +1,4 @@
 .App__card {
-  background-image: url(../src/images/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -8,6 +7,17 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-color: #333;
+}
+.Card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 55%;
+  padding: 100px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  max-width: 1200px;
 }
 
 .App {
