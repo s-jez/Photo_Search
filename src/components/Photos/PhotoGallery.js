@@ -9,27 +9,26 @@ const PhotoGallery = ({ data }) => {
 	// eslint-disable-next-line
 	const [photoIndex, setPhotoIndex] = useState(0);
 
-	const showModal = () => {
-		// w takim przypadku lepiej korzystać z prevState można także zapisać jako: setModalShow(prev => !prev);
-		setModalShow(prevState => !prevState);
-	};
+	// w takim przypadku lepiej korzystać z prevState można także zapisać jako: setModalShow(prev => !prev);
+	const toggleModal = () => setModalShow(prevState => !prevState);
 
-	// mozna prosciej zapisać jak 
+	// mozna prosciej zapisać tak:
 	const handleClickHandler = i => setPhotoIndex(i);
 
 	// spróbuj ostylować to tak jak jest na unsplash czyli 3 kolumny, a zdjęcia mają auto height
 
 	// mozna prosciej zrobić tak:
-
 	if (modalShow) {
-		<MyModal handleClose={showModal} data={data?.[photoIndex]} />
+		return (
+			<MyModal handleClose={toggleModal} data={data?.[photoIndex]} />
+		)
 	}
 
 	return (
 		<ul className={styles.gallery}>
 			{data?.map((item, i) => (
 				<li key={i} onClick={() => handleClickHandler(i)}>
-					<Photo data={item} photoIndex={i} showModal={showModal} />
+					<Photo data={item} photoIndex={i} showModal={toggleModal} />
 				</li>
 			))}
 		</ul>
