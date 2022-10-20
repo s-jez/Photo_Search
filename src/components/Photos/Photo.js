@@ -1,13 +1,10 @@
 import styles from "./PhotoGallery.module.css";
 
-const Photo = (props) => {
+const Photo = ({ showModal, data }) => {
   return (
     <>
-      <div className={styles.photo} onClick={props.showModal}>
-        <img
-          alt={props.data.alt?.description}
-          src={props.data.urls.small}
-        ></img>
+      <div className={styles.photo} onClick={showModal}>
+        <img alt={data.alt?.description} src={data.urls.small}></img>
       </div>
     </>
   );

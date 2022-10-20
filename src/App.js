@@ -1,12 +1,17 @@
 import React, { Fragment } from "react";
-import GlobalStyle from "./globalStyles";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GalleryContent from "./pages/GalleryContent";
 import MainContent from "./pages/MainContent";
 
 function App() {
   return (
     <Fragment>
-      <GlobalStyle />
-      <MainContent />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/photos" element={<GalleryContent />} />
+        </Routes>
+      </BrowserRouter>
     </Fragment>
   );
 }

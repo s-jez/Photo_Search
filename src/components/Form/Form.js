@@ -56,7 +56,7 @@ const Form = () => {
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
       />
-      {suggestions.length !== 0 &&
+      {suggestions.length &&
         // eslint-disable-next-line
         suggestions.map((suggestion, i) => {
           if (suggestion.alt_description !== null) {
@@ -73,9 +73,7 @@ const Form = () => {
           }
         })}
       {suggestions.length === 0 && inputValue !== "" && (
-        <div className={styles["input-suggestion"]} href="/">
-          There is no hint!
-        </div>
+        <div className={styles["input-suggestion"]}>There is no hint!</div>
       )}
     </form>
   );

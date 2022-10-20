@@ -8,26 +8,22 @@ const PhotoGallery = (props) => {
   // eslint-disable-next-line
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  const showModal = () => {
-    setModalShow(() => !modalShow);
-  };
+  const toggleModal = () => setModalShow((prevState) => !prevState);
 
-  const handleClickHandler = (i) => {
-    setPhotoIndex(i)
-  }
-  
+  const handleClickHandler = (i) => setPhotoIndex(i);
+
   return (
     <>
       {!modalShow ? (
         <ul className={styles.gallery}>
           {props.data?.map((item, i) => (
             <li key={i} onClick={() => handleClickHandler(i)}>
-              <Photo data={item} photoIndex={i} showModal={showModal} />
+              <Photo data={item} photoIndex={i} showModal={toggleModal} />
             </li>
           ))}
         </ul>
       ) : (
-        <MyModal handleClose={showModal} data={props.data[photoIndex]}/>
+        <MyModal handleClose={toggleModal} data={props.data[photoIndex]} />
       )}
     </>
   );

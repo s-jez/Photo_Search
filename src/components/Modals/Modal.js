@@ -1,8 +1,7 @@
 import styles from "./Modal.module.css";
 
-const Modal = (props) => {
+const Modal = ({ handleClose, data }) => {
   // eslint-disable-next-line
-  const { handleClose, data } = props;
   return (
     <div className={styles.modal}>
       <div

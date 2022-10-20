@@ -6,19 +6,20 @@ import PhotoGallery from "../Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
 
 const FormPhoto = () => {
-  const { state } = useLocation();
-  const { text } = state;
+  const {
+    state: { text },
+  } = useLocation();
   const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
 
   let SEARCH_PHOTOS_URL =
     UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
 
-  const formSubmitHandler = (ev) => {
-    ev.preventDefault();
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
   };
-  const formChangeHandler = (ev) => {
-    setInputValue(ev.target.value);
+  const formChangeHandler = (e) => {
+    setInputValue(e.target.value);
   };
 
   useEffect(() => {

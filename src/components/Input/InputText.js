@@ -1,16 +1,15 @@
 import React from "react";
 
-const InputText = (props) => {
-  const {
-    id,
-    value,
-    classes,
-    onChange,
-    onBlur,
-    validate,
-    placeholder,
-    onKeyDown,
-  } = props;
+const InputText = ({
+  id,
+  value,
+  classes,
+  onChange,
+  onBlur,
+  validate,
+  placeholder,
+  onKeyDown,
+}) => {
   return (
     <input
       type="text"
