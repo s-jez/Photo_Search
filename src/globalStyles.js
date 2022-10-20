@@ -1,3 +1,5 @@
+// tutaj korzystasz z globalstyles z styled-components a style komponentów masz w w module.css
+// trzymaj się jednego albo to albo to
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`

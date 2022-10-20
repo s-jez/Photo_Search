@@ -5,6 +5,7 @@ import App from "./App";
 import GalleryContent from "./pages/GalleryContent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// tutaj najlepiej wyrenderować samo App i to wszystko umieścić w APP wraz z GlobalStyles i wtedy w route dać    <MainContent />
 root.render(
   <BrowserRouter>
     <Routes>

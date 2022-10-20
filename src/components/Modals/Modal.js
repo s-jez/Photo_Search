@@ -1,9 +1,7 @@
 import styles from "./Modal.module.css";
 
-const Modal = (props) => {
-  // eslint-disable-next-line
-  const { handleClose, data } = props;
-  return (
+// Może MyModal zmienić na Modal a to tutaj na ModalContent?
+const Modal = ({ handleClose, data } ) => (
     <div className={styles.modal}>
       <div
         style={{ position: "relative", height: "auto" }}
@@ -31,6 +29,6 @@ const Modal = (props) => {
         <button onClick={handleClose}>Go back</button>
       </div>
     </div>
-  );
-};
+);
+
 export default Modal;

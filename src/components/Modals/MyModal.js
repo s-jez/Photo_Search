@@ -1,8 +1,9 @@
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 import Modal from "./Modal";
-
+// lepiej zimportować samo createPortal
+// tutaj też można użyć destrukturyzacji
 const MyModal = (props) =>
-  ReactDOM.createPortal(
+  createPortal(
     <Modal handleClose={props.handleClose} data={props.data} />,
     document.getElementById('modal')
   );
