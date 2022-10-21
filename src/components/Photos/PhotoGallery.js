@@ -12,20 +12,17 @@ const PhotoGallery = (props) => {
 
   const handleClickHandler = (i) => setPhotoIndex(i);
 
+  if (modalShow) {
+    return <MyModal handleClose={toggleModal} data={props.data[photoIndex]} />;
+  }
   return (
-    <>
-      {!modalShow ? (
-        <ul className={styles.gallery}>
-          {props.data?.map((item, i) => (
-            <li key={i} onClick={() => handleClickHandler(i)}>
-              <Photo data={item} photoIndex={i} showModal={toggleModal} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <MyModal handleClose={toggleModal} data={props.data[photoIndex]} />
-      )}
-    </>
+    <ul className={styles.gallery}>
+      {props.data?.map((item, i) => (
+        <li key={i} onClick={() => handleClickHandler(i)}>
+          <Photo data={item} photoIndex={i} showModal={toggleModal} />
+        </li>
+      ))}
+    </ul>
   );
 };
 export default PhotoGallery;

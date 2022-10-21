@@ -2,18 +2,21 @@ import React from "react";
 import Form from "../components/Form/Form";
 import styles from "../../src/App.module.css";
 import { useEffect, useState } from "react";
-import { UNSPLASH_KEY, UNSPLASH_URL } from "../utils/urls";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../config/urls";
 
 const MainContent = () => {
   const [randomPhoto, setRandomPhoto] = useState(
     "https://i.imgur.com/O0eAkcG.jpg"
   );
+  const getRandomPhoto = async () => {
+    const res = await fetch(UNSPLASH_URL + "/photos/random" + UNSPLASH_KEY);
+    return res.json();
+  };
   useEffect(() => {
-    fetch(UNSPLASH_URL + "/photos/random" + UNSPLASH_KEY)
-      .then((response) => response.json())
-      .then((data) => {
-        setRandomPhoto(data.urls.full);
-      });
+    (async () => {
+      const randomPhoto = await getRandomPhoto();
+      setRandomPhoto(randomPhoto.urls.full);
+    })();
   }, []);
   return (
     <>

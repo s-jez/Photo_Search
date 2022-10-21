@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import PhotoGallery from "../Photos/PhotoGallery";
-import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../../config/urls";
 
 const FormPhoto = () => {
   const {

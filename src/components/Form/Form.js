@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import inputStyles from "../Input/InputText.module.css";
-import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "../../config/urls";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
