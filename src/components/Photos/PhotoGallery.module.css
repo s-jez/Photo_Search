@@ -3,16 +3,14 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   max-width: 1200px;
   list-style: none;
-  padding: 35px;
-  gap: 80px;
-  place-items: center;
+  gap: 10px;
 }
 .photo {
   display: flex;
   justify-content: center;
 }
 .photo img {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
 }
