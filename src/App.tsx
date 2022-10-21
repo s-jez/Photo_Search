@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GalleryContent from "./pages/GalleryContent";
 import MainContent from "./pages/MainContent";
 
-const App = () => {
+const App: FC = () => {
   return (
     <Fragment>
       <BrowserRouter>

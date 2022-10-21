@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import inputStyles from "../Input/InputText.module.css";
 
-const Form = () => {
+const Form: FC = () => {
   const [inputValue, setInputValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<any[]>([]);
 
   const navigate = useNavigate();
-  let SEARCH_PHOTOS_URL = "unsplash.com/nautocomplete/";
+  let SEARCH_PHOTOS_URL = "https://unsplash.com/nautocomplete";
 
   const getPhotosByQuery = async (query) => {
     try {
-      const res = await fetch(`${SEARCH_PHOTOS_URL}${query}`);
-      const data = await res.json();
-      return data;
+      const res = await fetch(`${SEARCH_PHOTOS_URL}/${query}`);
+      return res.json();
     } catch (error) {
-      console.log(error);
       return null;
     }
   };
@@ -27,7 +25,7 @@ const Form = () => {
     if (inputValue.length < 3) {
       return;
     }
-    const matchesPhotos = getPhotosByQuery(inputValue);
+    const matchesPhotos: any = getPhotosByQuery(inputValue);
     setSuggestions(matchesPhotos);
   };
   const onSuggestHandler = (text) => {
@@ -41,14 +39,13 @@ const Form = () => {
   return (
     <form className={styles["form-input"]}>
       <InputText
-        type="text"
         id=""
         value={inputValue}
         classes={inputStyles.input}
         onChange={inputChangeHandler}
-        validate=""
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
+        onBlur={null}
       />
       {suggestions.length &&
         // eslint-disable-next-line
@@ -59,9 +56,8 @@ const Form = () => {
                 className={styles["input-suggestion"]}
                 key={i}
                 onClick={() => onSuggestHandler(suggestion)}
-                to={"/photos"}
               >
-                {suggestion.alt_description}
+                <a href="/photos">{suggestion.alt_description}</a>
               </div>
             );
           }

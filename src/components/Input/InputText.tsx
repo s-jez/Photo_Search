@@ -6,7 +6,6 @@ const InputText = ({
   classes,
   onChange,
   onBlur,
-  validate,
   placeholder,
   onKeyDown,
 }) => {
@@ -18,7 +17,6 @@ const InputText = ({
       className={classes}
       onChange={onChange}
       onBlur={onBlur}
-      validate={validate}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
     />

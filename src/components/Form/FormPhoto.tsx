@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import PhotoGallery from "../Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "../../config/urls";
 
-const FormPhoto = () => {
+const FormPhoto: FC = () => {
   const {
     state: { text },
   } = useLocation();
@@ -34,13 +34,13 @@ const FormPhoto = () => {
     <>
       <form onSubmit={formSubmitHandler}>
         <InputText
-          type="text"
           id=""
           value={inputValue}
           onChange={formChangeHandler}
           classes={styles["input-search"]}
-          validate=""
           placeholder="Search for images..."
+          onBlur={null}
+          onKeyDown={null}
         />
       </form>
       <div className={styles["form-gallery"]}>

@@ -1,6 +1,7 @@
+import React from "react";
 import styles from "./PhotoGallery.module.css";
 
-const Photo = ({ showModal, data }) => {
+const Photo = ({ showModal, data, photoIndex }) => {
   return (
     <>
       <div className={styles.photo} onClick={showModal}>
