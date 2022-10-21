@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GalleryContent from "./pages/GalleryContent";
 import MainContent from "./pages/MainContent";
 
-function App() {
+const App = () => {
   return (
     <Fragment>
       <BrowserRouter>
@@ -14,6 +14,5 @@ function App() {
       </BrowserRouter>
     </Fragment>
   );
-}
-
+};
 export default App;
