@@ -1,40 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import inputStyles from "../Input/InputText.module.css";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
+import { getPhotosByQuery } from "../modules/services";
 
 const Form = () => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [data, setData] = useState([]);
 
   const navigate = useNavigate();
 
   let SEARCH_PHOTOS_URL =
     UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(SEARCH_PHOTOS_URL);
-      const data = await res.json();
-      setData(data.results);
-    };
-    fetchData();
-  }, [SEARCH_PHOTOS_URL]);
   const inputChangeHandler = (e) => {
-    SEARCH_PHOTOS_URL += e.target.value;
-    let matches = [];
-    if (inputValue.length >= 3) {
-      matches = data.filter((searchVal) => {
-        const regex = new RegExp(`${inputValue.toLowerCase()}`, "gi");
-        const hintValue = searchVal.tags[0]?.source?.title?.match(regex);
-        return hintValue;
-      });
-    }
-    setSuggestions(matches);
+    const inputValue = e.target.value;
     setInputValue(e.target.value);
+    if (inputValue.length <= 3) {
+      return;
+    }
+    const matchesPhotos = getPhotosByQuery(SEARCH_PHOTOS_URL, inputValue);
+    setSuggestions(matchesPhotos);
   };
   const onSuggestHandler = (text) => {
     navigate(`/photos`, { state: { text: text.alt_description } });
@@ -59,18 +47,18 @@ const Form = () => {
       {suggestions.length &&
         // eslint-disable-next-line
         suggestions.map((suggestion, i) => {
-          if (suggestion.alt_description !== null) {
-            return (
-              <div
-                className={styles["input-suggestion"]}
-                key={i}
-                onClick={() => onSuggestHandler(suggestion)}
-                to={"/photos"}
-              >
-                {suggestion.alt_description}
-              </div>
-            );
-          }
+          // eslint-disable-next-line
+          if (suggestion.alt_description === null) return;
+          return (
+            <div
+              className={styles["input-suggestion"]}
+              key={i}
+              onClick={() => onSuggestHandler(suggestion)}
+              to={"/photos"}
+            >
+              {suggestion.alt_description}
+            </div>
+          );
         })}
       {suggestions.length === 0 && inputValue !== "" && (
         <div className={styles["input-suggestion"]}>There is no hint!</div>
