@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import PhotoGallery from "../Photos/PhotoGallery";
-import { getPhotosByQuery } from "../modules/services";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "../../utils/urls";
 
 const FormPhoto = () => {
@@ -21,9 +20,16 @@ const FormPhoto = () => {
   };
   const formChangeHandler = (e) => {
     setInputValue(e.target.value);
-    const matchesPhotos = getPhotosByQuery(SEARCH_PHOTOS_URL);
-    setData(matchesPhotos);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(SEARCH_PHOTOS_URL);
+      const data = await res.json();
+      setData(data.results);
+    };
+    fetchData();
+  }, [SEARCH_PHOTOS_URL]);
   return (
     <>
       <form onSubmit={formSubmitHandler}>
