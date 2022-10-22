@@ -15,10 +15,10 @@ const FormPhoto: FC = () => {
   let SEARCH_PHOTOS_URL =
     UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
 
-  const formSubmitHandler = (e) => {
+  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const formChangeHandler = (e) => {
+  const formChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -39,8 +39,6 @@ const FormPhoto: FC = () => {
           onChange={formChangeHandler}
           classes={styles["input-search"]}
           placeholder="Search for images..."
-          onBlur={null}
-          onKeyDown={null}
         />
       </form>
       <div className={styles["form-gallery"]}>

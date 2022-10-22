@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-const useFetch = ({ url }) => {
+type fetchProps = {
+  url: string;
+};
+
+const useFetch = ({ url }: fetchProps) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {

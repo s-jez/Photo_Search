@@ -1,7 +1,24 @@
 import React from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ handleClose, data }) => {
+type ModalProps = {
+  handleClose: React.MouseEventHandler<HTMLButtonElement>;
+  data: {
+    urls: {
+      full: string;
+    };
+    alt_description: string;
+    likes: number;
+    user: {
+      profile_image: {
+        small: string;
+      };
+      username: string;
+    };
+  };
+};
+
+const Modal = ({ handleClose, data }: ModalProps) => {
   // eslint-disable-next-line
   return (
     <div className={styles.modal}>

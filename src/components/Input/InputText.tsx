@@ -1,5 +1,15 @@
 import React from "react";
 
+type InputProps = {
+  value: number | string | readonly string[] | undefined;
+  id?: string;
+  placeholder?: string;
+  classes?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+};
+
 const InputText = ({
   id,
   value,
@@ -8,7 +18,7 @@ const InputText = ({
   onBlur,
   placeholder,
   onKeyDown,
-}) => {
+}: InputProps) => {
   return (
     <input
       type="text"

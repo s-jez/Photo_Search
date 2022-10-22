@@ -11,7 +11,7 @@ const Form: FC = () => {
   const navigate = useNavigate();
   let SEARCH_PHOTOS_URL = "https://unsplash.com/nautocomplete";
 
-  const getPhotosByQuery = async (query) => {
+  const getPhotosByQuery = async (query: string) => {
     try {
       const res = await fetch(`${SEARCH_PHOTOS_URL}/${query}`);
       return res.json();
@@ -19,7 +19,7 @@ const Form: FC = () => {
       return null;
     }
   };
-  const inputChangeHandler = (e) => {
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setInputValue(e.target.value);
     if (inputValue.length < 3) {
@@ -28,10 +28,10 @@ const Form: FC = () => {
     const matchesPhotos: any = getPhotosByQuery(inputValue);
     setSuggestions(matchesPhotos);
   };
-  const onSuggestHandler = (text) => {
-    navigate(`/photos`, { state: { text: text.alt_description } });
+  const onSuggestHandler = (text: string) => {
+    navigate(`/photos`, { state: { text: text } });
   };
-  const handleKeyDown = (ev) => {
+  const handleKeyDown = (ev: React.KeyboardEvent<HTMLInputElement>) => {
     if (ev.keyCode === 13) {
       navigate(`/photos`, { state: { text: inputValue } });
     }
@@ -45,7 +45,6 @@ const Form: FC = () => {
         onChange={inputChangeHandler}
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
-        onBlur={null}
       />
       {suggestions.length &&
         // eslint-disable-next-line

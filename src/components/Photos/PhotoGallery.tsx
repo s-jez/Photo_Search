@@ -4,14 +4,34 @@ import styles from "./PhotoGallery.module.css";
 import MyModal from "../Modals/MyModal";
 import { useState } from "react";
 
-const PhotoGallery = ({ data }) => {
+type PhotoProps = {
+  data: {
+    alt: {
+      description: string;
+    };
+    urls: {
+      small: string;
+      full: string;
+    };
+    alt_description: string;
+    likes: number;
+    user: {
+      profile_image: {
+        small: string;
+      };
+      username: string;
+    };
+  }[];
+};
+
+const PhotoGallery = ({ data }: PhotoProps) => {
   const [modalShow, setModalShow] = useState(false);
   // eslint-disable-next-line
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const toggleModal = () => setModalShow((prevState) => !prevState);
 
-  const handleClickHandler = (i) => setPhotoIndex(i);
+  const handleClickHandler = (i: number) => setPhotoIndex(i);
 
   if (modalShow) {
     return <MyModal handleClose={toggleModal} data={data[photoIndex]} />;
