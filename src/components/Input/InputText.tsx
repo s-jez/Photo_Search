@@ -2,7 +2,7 @@ import React from "react";
 import "./InputText.css";
 
 type InputProps = {
-  value: number | string | readonly string[] | undefined;
+  value?: number | string | readonly string[] | undefined;
   id?: string;
   placeholder?: string;
   classes?: string;

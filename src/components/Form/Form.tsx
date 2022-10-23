@@ -1,8 +1,9 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputText from "components/Input/InputText";
 import { getPhotosByQuery } from "components/modules/services";
 import "./Form.css";
+import debounce from "lodash.debounce";
 
 const Form: FC = () => {
   const [inputValue, setInputValue] = useState("");
@@ -11,7 +12,6 @@ const Form: FC = () => {
   const navigate = useNavigate();
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
     setInputValue(e.target.value);
     if (inputValue.length < 3) {
       return;
@@ -19,6 +19,17 @@ const Form: FC = () => {
     const matchesPhotos: any = getPhotosByQuery(inputValue);
     setSuggestions(matchesPhotos);
   };
+  const debouncedChangeHandler = useMemo(
+    () => debounce(inputChangeHandler, 300),
+    // eslint-disable-next-line
+    []
+  );
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+    // eslint-disable-next-line
+  }, []);
   const onSuggestHandler = (text: string) => {
     navigate(`/photos`, { state: { text: text } });
   };
@@ -31,9 +42,8 @@ const Form: FC = () => {
     <form className="form-input">
       <InputText
         id=""
-        value={inputValue}
         classes="input"
-        onChange={inputChangeHandler}
+        onChange={debouncedChangeHandler}
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
       />

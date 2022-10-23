@@ -1,9 +1,10 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, useMemo, FC } from "react";
 import { useLocation } from "react-router-dom";
 import InputText from "components/Input/InputText";
 import PhotoGallery from "components/Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
 import "./Form.css";
+import debounce from "lodash.debounce";
 
 const FormPhoto: FC = () => {
   const {
@@ -21,6 +22,17 @@ const FormPhoto: FC = () => {
   const formChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+  const debouncedChangeHandler = useMemo(
+    () => debounce(formChangeHandler, 300),
+    // eslint-disable-next-line
+    []
+  );
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +47,7 @@ const FormPhoto: FC = () => {
       <form onSubmit={formSubmitHandler}>
         <InputText
           id=""
-          value={inputValue}
-          onChange={formChangeHandler}
+          onChange={debouncedChangeHandler}
           classes="input-search"
           placeholder="Search for images..."
         />
