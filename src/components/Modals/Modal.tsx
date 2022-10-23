@@ -1,23 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import ModalContent from "./ModalContent";
-
-type ModalProps = {
-  handleClose: React.MouseEventHandler<HTMLButtonElement>;
-  data: {
-    urls: {
-      full: string;
-    };
-    alt_description: string;
-    likes: number;
-    user: {
-      profile_image: {
-        small: string;
-      };
-      username: string;
-    };
-  };
-};
+import ModalContent, { ModalProps } from "./ModalContent";
 
 const Modal = ({ handleClose, data }: ModalProps) =>
   createPortal(
