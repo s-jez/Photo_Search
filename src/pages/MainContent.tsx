@@ -1,8 +1,7 @@
 import React from "react";
-import Form from "../components/Form/Form";
-import styles from "../../src/App.module.css";
+import Form from "components/Form/Form";
 import { useEffect, useState } from "react";
-import { getRandomPhoto } from "../components/modules/services";
+import { getRandomPhoto } from "components/modules/services";
 
 const MainContent = () => {
   const [randomPhoto, setRandomPhoto] = useState(
@@ -16,12 +15,12 @@ const MainContent = () => {
   }, []);
   return (
     <>
-      <div className={styles.App}>
+      <div className="App">
         <div
-          className={styles["App__card"]}
+          className="App__card"
           style={{ backgroundImage: `url(${randomPhoto})` }}
         >
-          <div className={styles["Card"]}>
+          <div className="Card">
             <h1>Unsplash</h1>
             <p>
               The internet's source of{" "}

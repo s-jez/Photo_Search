@@ -1,6 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
 import { useLocation } from "react-router-dom";
-import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import PhotoGallery from "../Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "../../config/urls";
@@ -37,13 +36,13 @@ const FormPhoto: FC = () => {
           id=""
           value={inputValue}
           onChange={formChangeHandler}
-          classes={styles["input-search"]}
+          classes="input-search"
           placeholder="Search for images..."
         />
       </form>
-      <div className={styles["form-gallery"]}>
+      <div className="form-gallery">
         <h1>{inputValue}</h1>
-        <span className={styles["form-result"]}>Results for: {inputValue}</span>
+        <span className="form-result">Results for: {inputValue}</span>
         <PhotoGallery data={data} />
       </div>
     </>

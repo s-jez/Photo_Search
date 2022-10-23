@@ -8,7 +8,7 @@ export const getPhotos = async (url:string) => {
 export const getPhotosByQuery = async (query: string) => {
   try {
     const res = await fetch(`https://unsplash.com/nautocomplete/${query}`, {
-      method: "GET",
+      method: "GET"
     });
     return res.json();
   } catch (error) {

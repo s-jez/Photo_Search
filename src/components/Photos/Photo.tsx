@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./PhotoGallery.module.css";
 
 type PhotoProps = {
   showModal: React.MouseEventHandler<HTMLDivElement>;
@@ -17,7 +16,7 @@ type PhotoProps = {
 const Photo = ({ showModal, data, photoIndex }: PhotoProps) => {
   return (
     <>
-      <div className={styles.photo} onClick={showModal}>
+      <div className="photo" onClick={showModal}>
         <img alt={data.alt?.description} src={data.urls.small}></img>
       </div>
     </>

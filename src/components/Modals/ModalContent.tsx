@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Modal.module.css";
 
 export type ModalProps = {
   handleClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -21,16 +20,16 @@ export type ModalProps = {
 const ModalContent = ({ handleClose, data }: ModalProps) => {
   // eslint-disable-next-line
   return (
-    <div className={styles.modal}>
+    <div className="modal">
       <div
         style={{ position: "relative", height: "auto" }}
-        className={styles["photo-modal"]}
+        className="photo-modal"
       >
-        <div className={styles["photo-avatar"]}>
+        <div className="photo-avatar">
           <img src={data.user.profile_image.small} alt="" />
           <span>{data.user.username}</span>
         </div>
-        <div className={styles.photo}>
+        <div className="photo">
           <img
             src={data.urls.full}
             alt={data.alt_description}

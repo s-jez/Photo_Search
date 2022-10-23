@@ -1,8 +1,6 @@
 import React, { useState, FC } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
-import inputStyles from "../Input/InputText.module.css";
 import { getPhotosByQuery } from "../modules/services";
 
 const Form: FC = () => {
@@ -29,11 +27,11 @@ const Form: FC = () => {
     }
   };
   return (
-    <form className={styles["form-input"]}>
+    <form className="form-input">
       <InputText
         id=""
         value={inputValue}
-        classes={inputStyles.input}
+        classes="input"
         onChange={inputChangeHandler}
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
@@ -44,7 +42,7 @@ const Form: FC = () => {
           if (suggestion.alt_description !== null) {
             return (
               <div
-                className={styles["input-suggestion"]}
+                className="input-suggestion"
                 key={i}
                 onClick={() => onSuggestHandler(suggestion)}
               >
@@ -54,7 +52,7 @@ const Form: FC = () => {
           }
         })}
       {suggestions.length === 0 && inputValue !== "" && (
-        <div className={styles["input-suggestion"]}>There is no hint!</div>
+        <div className="input-suggestion">There is no hint!</div>
       )}
     </form>
   );
