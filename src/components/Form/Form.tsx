@@ -3,22 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 import InputText from "../Input/InputText";
 import inputStyles from "../Input/InputText.module.css";
+import { getPhotosByQuery } from "../modules/services";
 
 const Form: FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
   const navigate = useNavigate();
-  let SEARCH_PHOTOS_URL = "https://unsplash.com/nautocomplete";
 
-  const getPhotosByQuery = async (query: string) => {
-    try {
-      const res = await fetch(`${SEARCH_PHOTOS_URL}/${query}`);
-      return res.json();
-    } catch (error) {
-      return null;
-    }
-  };
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setInputValue(e.target.value);

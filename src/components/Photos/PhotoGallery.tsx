@@ -1,7 +1,7 @@
 import React from "react";
 import Photo from "./Photo";
 import styles from "./PhotoGallery.module.css";
-import MyModal from "../Modals/MyModal";
+import Modal from "../Modals/Modal";
 import { useState } from "react";
 
 type PhotoProps = {
@@ -34,7 +34,7 @@ const PhotoGallery = ({ data }: PhotoProps) => {
   const handleClickHandler = (i: number) => setPhotoIndex(i);
 
   if (modalShow) {
-    return <MyModal handleClose={toggleModal} data={data[photoIndex]} />;
+    return <Modal handleClose={toggleModal} data={data[photoIndex]} />;
   }
   return (
     <ul className={styles.gallery}>

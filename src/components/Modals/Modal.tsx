@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./Modal.module.css";
+import { createPortal } from "react-dom";
+import ModalContent from "./ModalContent";
 
 type ModalProps = {
   handleClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -18,36 +19,9 @@ type ModalProps = {
   };
 };
 
-const Modal = ({ handleClose, data }: ModalProps) => {
-  // eslint-disable-next-line
-  return (
-    <div className={styles.modal}>
-      <div
-        style={{ position: "relative", height: "auto" }}
-        className={styles["photo-modal"]}
-      >
-        <div className={styles["photo-avatar"]}>
-          <img src={data.user.profile_image.small} alt="" />
-          <span>{data.user.username}</span>
-        </div>
-        <div className={styles.photo}>
-          <img
-            src={data.urls.full}
-            alt={data.alt_description}
-            width={600}
-            height={600}
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div>
-          <span>Likes</span>
-          <p>{data.likes}</p>
-        </div>
-      </div>
-      <div>
-        <button onClick={handleClose}>Go back</button>
-      </div>
-    </div>
+const Modal = ({ handleClose, data }: ModalProps) =>
+  createPortal(
+    <ModalContent handleClose={handleClose} data={data} />,
+    document.getElementById("modal")!
   );
-};
 export default Modal;
