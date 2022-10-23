@@ -16,11 +16,11 @@
   border: 1px solid rgb(131, 131, 131);
   border-radius: 6px;
 }
-.photo {
+.photo__modal {
   display: flex;
   justify-content: center;
 }
-.photo img {
+.photo__modal img {
   width: 1200px;
   height: 600px;
   object-fit: cover;
@@ -30,14 +30,14 @@
   padding: 5rem;
   margin: auto;
 }
-.photo-avatar {
+.photo__modal--avatar {
   display: flex;
   margin: 1rem 0rem;
 }
-.photo-avatar img {
+.photo__modal--avatar img {
   border-radius: 30px;
   margin-right: 5px;
 }
-.photo-avatar span {
+.photo__modal--avatar span {
   margin: 0.25rem;
 }

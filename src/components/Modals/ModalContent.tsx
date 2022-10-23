@@ -26,11 +26,11 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
         style={{ position: "relative", height: "auto" }}
         className="photo-modal"
       >
-        <div className="photo-avatar">
+        <div className="photo__modal--avatar">
           <img src={data.user.profile_image.small} alt="" />
           <span>{data.user.username}</span>
         </div>
-        <div className="photo">
+        <div className="photo__modal">
           <img
             src={data.urls.full}
             alt={data.alt_description}
