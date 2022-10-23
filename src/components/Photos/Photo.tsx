@@ -1,4 +1,5 @@
 import React from "react";
+import "./PhotoGallery.css";
 
 type PhotoProps = {
   showModal: React.MouseEventHandler<HTMLDivElement>;

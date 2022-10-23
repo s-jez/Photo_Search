@@ -1,7 +1,8 @@
 import React from "react";
 import Photo from "./Photo";
-import Modal from "../Modals/Modal";
+import Modal from "components/Modals/Modal";
 import { useState } from "react";
+import "./PhotoGallery.css";
 
 type PhotoProps = {
   data: {

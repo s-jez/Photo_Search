@@ -1,8 +1,9 @@
 import React, { useEffect, useState, FC } from "react";
 import { useLocation } from "react-router-dom";
-import InputText from "../Input/InputText";
-import PhotoGallery from "../Photos/PhotoGallery";
-import { UNSPLASH_KEY, UNSPLASH_URL } from "../../config/urls";
+import InputText from "components/Input/InputText";
+import PhotoGallery from "components/Photos/PhotoGallery";
+import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
+import "./Form.css";
 
 const FormPhoto: FC = () => {
   const {

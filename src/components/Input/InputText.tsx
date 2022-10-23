@@ -1,4 +1,5 @@
 import React from "react";
+import "./InputText.css";
 
 type InputProps = {
   value: number | string | readonly string[] | undefined;

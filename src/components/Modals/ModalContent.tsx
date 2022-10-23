@@ -1,4 +1,5 @@
 import React from "react";
+import "./Modal.css";
 
 export type ModalProps = {
   handleClose: React.MouseEventHandler<HTMLButtonElement>;

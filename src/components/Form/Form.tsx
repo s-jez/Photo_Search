@@ -1,7 +1,8 @@
 import React, { useState, FC } from "react";
 import { useNavigate } from "react-router-dom";
-import InputText from "../Input/InputText";
-import { getPhotosByQuery } from "../modules/services";
+import InputText from "components/Input/InputText";
+import { getPhotosByQuery } from "components/modules/services";
+import "./Form.css";
 
 const Form: FC = () => {
   const [inputValue, setInputValue] = useState("");

@@ -2,6 +2,7 @@ import React from "react";
 import Form from "components/Form/Form";
 import { useEffect, useState } from "react";
 import { getRandomPhoto } from "components/modules/services";
+import "App.css";
 
 const MainContent = () => {
   const [randomPhoto, setRandomPhoto] = useState(
