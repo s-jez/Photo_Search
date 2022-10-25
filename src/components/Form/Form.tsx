@@ -27,7 +27,7 @@ const Form: FC = () => {
   // useEffect(() => {
   //   (async () => {
   //     const getPhotosSuggestions = async () => {
-  //       const matchesPhotos:any = await getPhotosByQuery(inputValue)
+  //       const matchesPhotos = await getPhotosByQuery(inputValue)
   //       setSuggestions(matchesPhotos)
   //     }
   //     getPhotosSuggestions()
