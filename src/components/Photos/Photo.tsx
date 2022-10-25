@@ -21,7 +21,7 @@ const Photo = ({ showModal, data, photoIndex }: PhotoProps) => {
         <img
           alt={data.alt?.description}
           src={data.urls.small}
-          className="w-450 h-450 object-cover"
+          className="photo"
         ></img>
       </div>
     </>
