@@ -23,13 +23,13 @@ const MainContent = () => {
         >
           <div className="Card">
             <h1 className="text-3xl font-bold">Unsplash</h1>
-            <p className="m-5">
+            <p className="m-5 mx-auto">
               The internet's source of{" "}
               <a href="https://unsplash.com/" target="_blank" rel="noreferrer">
                 freely-usable images
               </a>
             </p>
-            <p className="m-2">Powered by creators everywhere.</p>
+            <p className="m-2 mx-auto">Powered by creators everywhere.</p>
             <Form />
           </div>
         </div>

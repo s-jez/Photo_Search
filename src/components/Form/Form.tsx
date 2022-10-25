@@ -24,15 +24,15 @@ const Form: FC = () => {
     // eslint-disable-next-line
     []
   );
-  // useEffect(() => {
-  //   (async () => {
-  //     const getPhotosSuggestions = async () => {
-  //       const matchesPhotos = await getPhotosByQuery(inputValue)
-  //       setSuggestions(matchesPhotos)
-  //     }
-  //     getPhotosSuggestions()
-  //   })()
-  // }, [inputValue])
+  useEffect(() => {
+    (async () => {
+      const getPhotosSuggestions = async () => {
+        const matchesPhotos = await getPhotosByQuery(inputValue)
+        console.log(matchesPhotos)
+      }
+      getPhotosSuggestions()
+    })()
+  }, [inputValue])
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();
