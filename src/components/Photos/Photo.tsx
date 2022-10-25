@@ -18,7 +18,11 @@ const Photo = ({ showModal, data, photoIndex }: PhotoProps) => {
   return (
     <>
       <div className="photo flex justify-center" onClick={showModal}>
-        <img alt={data.alt?.description} src={data.urls.small}></img>
+        <img
+          alt={data.alt?.description}
+          src={data.urls.small}
+          className="w-450 h-450 object-cover"
+        ></img>
       </div>
     </>
   );

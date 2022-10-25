@@ -37,7 +37,7 @@ const PhotoGallery = ({ data }: PhotoDataProps) => {
     return <Modal handleClose={toggleModal} data={data[photoIndex]} />;
   }
   return (
-    <ul className="gallery">
+    <ul className="gallery max-w-screen-xl gap-y-2.5 list-none">
       {data?.map((item, i) => (
         <li key={i} onClick={() => handleClickHandler(i)}>
           <Photo data={item} photoIndex={i} showModal={toggleModal} />
