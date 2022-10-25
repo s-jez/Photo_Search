@@ -17,6 +17,7 @@ https://unsplash.com/developers
 - React.JS
 - TypeScript
 - Unsplash API
+- Tailwind CSS
 
 ## Run Locally
 
