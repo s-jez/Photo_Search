@@ -16,14 +16,23 @@ const Form: FC = () => {
     if (inputValue.length < 3) {
       return;
     }
-    const matchesPhotos:any= getPhotosByQuery(inputValue);
-    setSuggestions(matchesPhotos);
+    const matchesPhotos:any = getPhotosByQuery(inputValue)
+    setSuggestions(matchesPhotos)
   };
   const debouncedChangeHandler = useMemo(
     () => debounce(inputChangeHandler, 300),
     // eslint-disable-next-line
     []
   );
+  // useEffect(() => {
+  //   (async () => {
+  //     const getPhotosSuggestions = async () => {
+  //       const matchesPhotos:any = await getPhotosByQuery(inputValue)
+  //       setSuggestions(matchesPhotos)
+  //     }
+  //     getPhotosSuggestions()
+  //   })()
+  // }, [inputValue])
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();
