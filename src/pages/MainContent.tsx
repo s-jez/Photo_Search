@@ -16,20 +16,20 @@ const MainContent = () => {
   }, []);
   return (
     <>
-      <div className="App">
+      <div className="h-48 min-h-screen text-white">
         <div
           className="App__card"
           style={{ backgroundImage: `url(${randomPhoto})` }}
         >
           <div className="Card">
-            <h1 className="text-3xl font-bold">Unsplash</h1>
-            <p className="m-5 mx-auto">
+            <h1 className="text-4xl font-bold">Unsplash</h1>
+            <p className="mx-auto m-3">
               The internet's source of{" "}
               <a href="https://unsplash.com/" target="_blank" rel="noreferrer">
                 freely-usable images
               </a>
             </p>
-            <p className="m-2 mx-auto">Powered by creators everywhere.</p>
+            <p className="mx-auto m-2">Powered by creators everywhere.</p>
             <Form />
           </div>
         </div>

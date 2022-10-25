@@ -22,12 +22,10 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
   // eslint-disable-next-line
   return (
     <div className="modal">
-      <div
-        style={{ position: "relative", height: "auto" }}
-      >
+      <div style={{ position: "relative", height: "auto" }}>
         <div className="photo__modal--avatar">
-            <img src={data.user.profile_image.small} alt=""/>
-            <span>{data.user.username}</span>
+          <img src={data.user.profile_image.small} alt="" />
+          <span>{data.user.username}</span>
         </div>
         <div className="photo__modal">
           <img

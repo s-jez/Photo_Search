@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import InputText from "components/Input/InputText";
 import PhotoGallery from "components/Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
-import "./Form.css";
 import debounce from "lodash.debounce";
+import { getPhotos } from "components/modules/services";
 
 const FormPhoto: FC = () => {
   const {
@@ -12,9 +12,6 @@ const FormPhoto: FC = () => {
   } = useLocation();
   const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
-
-  let SEARCH_PHOTOS_URL =
-    UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,27 +31,24 @@ const FormPhoto: FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  let SEARCH_PHOTOS_URL =
+    UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
+
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(SEARCH_PHOTOS_URL);
-      const data = await res.json();
-      setData(data.results);
-    };
-    fetchData();
-  }, [SEARCH_PHOTOS_URL]);
+    getPhotos(SEARCH_PHOTOS_URL).then((data) => setData(data));
+  });
   return (
     <>
       <form onSubmit={formSubmitHandler}>
         <InputText
           id=""
           onChange={debouncedChangeHandler}
-          classes="input-search"
+          classes="w-96 h-6 rounded-xl bg-gray-100 border-slate-400"
           placeholder="Search for images..."
         />
       </form>
-      <div className="form-gallery">
-        <h1>{inputValue}</h1>
-        <span className="form-result">Results for: {inputValue}</span>
+      <div className="mx-auto max-w-screen-xl">
+        <div className="font-bold text-xl m-5">Results for: {inputValue}</div>
         <PhotoGallery data={data} />
       </div>
     </>

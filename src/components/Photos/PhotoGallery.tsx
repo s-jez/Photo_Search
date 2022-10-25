@@ -4,7 +4,7 @@ import Modal from "components/Modals/Modal";
 import { useState } from "react";
 import "./PhotoGallery.css";
 
-type PhotoProps = {
+export type PhotoDataProps = {
   data: {
     alt: {
       description: string;
@@ -24,7 +24,7 @@ type PhotoProps = {
   }[];
 };
 
-const PhotoGallery = ({ data }: PhotoProps) => {
+const PhotoGallery = ({ data }: PhotoDataProps) => {
   const [modalShow, setModalShow] = useState(false);
   // eslint-disable-next-line
   const [photoIndex, setPhotoIndex] = useState(0);

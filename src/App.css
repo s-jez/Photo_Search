@@ -21,18 +21,6 @@
   border-radius: 5px;
   max-width: 1200px;
 }
-
-.App {
-  color: #fff;
-  height: 100vh;
-}
-.App h1 {
-  font-size: 2.6rem;
-  margin: 0;
-}
-.App a {
-  color: aliceblue;
-}
 @media (max-width: 1020px) {
   .Card {
     width: 80%;

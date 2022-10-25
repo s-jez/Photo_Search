@@ -2,7 +2,6 @@ import React, { useState, FC, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputText from "components/Input/InputText";
 import { getPhotosByQuery } from "components/modules/services";
-import "./Form.css";
 import debounce from "lodash.debounce";
 
 const Form: FC = () => {
@@ -16,23 +15,21 @@ const Form: FC = () => {
     if (inputValue.length < 3) {
       return;
     }
-    const matchesPhotos:any = getPhotosByQuery(inputValue)
-    setSuggestions(matchesPhotos)
+    const matchesPhotos: any = getPhotosByQuery(inputValue);
+    setSuggestions(matchesPhotos);
   };
   const debouncedChangeHandler = useMemo(
     () => debounce(inputChangeHandler, 300),
     // eslint-disable-next-line
     []
   );
-  useEffect(() => {
-    (async () => {
-      const getPhotosSuggestions = async () => {
-        const matchesPhotos = await getPhotosByQuery(inputValue)
-        console.log(matchesPhotos)
-      }
-      getPhotosSuggestions()
-    })()
-  }, [inputValue])
+  // (async () => {
+  //   const getPhotosSuggestions = async () => {
+  //     const matchesPhotos = await getPhotosByQuery(inputValue);
+  //     console.log(matchesPhotos);
+  //   };
+  //   getPhotosSuggestions();
+  // })();
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();
@@ -48,7 +45,7 @@ const Form: FC = () => {
     }
   };
   return (
-    <form className="form-input">
+    <form className="text-white rounded-md bg-white">
       <InputText
         id=""
         classes="input"
@@ -72,7 +69,9 @@ const Form: FC = () => {
           }
         })}
       {suggestions.length === 0 && inputValue !== "" && (
-        <div className="input-suggestion">There is no hint!</div>
+        <div className="text-black text-base p-3 cursor-pointer">
+          There is no hint!
+        </div>
       )}
     </form>
   );
