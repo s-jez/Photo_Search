@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .App__card {
   background-size: cover;
   background-repeat: no-repeat;
