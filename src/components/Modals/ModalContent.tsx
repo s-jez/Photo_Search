@@ -24,11 +24,10 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
     <div className="modal">
       <div
         style={{ position: "relative", height: "auto" }}
-        className="photo-modal"
       >
         <div className="photo__modal--avatar">
-          <img src={data.user.profile_image.small} alt="" />
-          <span>{data.user.username}</span>
+            <img src={data.user.profile_image.small} alt=""/>
+            <span>{data.user.username}</span>
         </div>
         <div className="photo__modal">
           <img
@@ -39,7 +38,7 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div>
+        <div className="photo__modal--likes">
           <span>Likes</span>
           <p>{data.likes}</p>
         </div>

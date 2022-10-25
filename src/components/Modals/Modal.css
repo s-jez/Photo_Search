@@ -32,7 +32,10 @@
 }
 .photo__modal--avatar {
   display: flex;
-  margin: 1rem 0rem;
+  margin: 15px;
+}
+.photo__modal--likes {
+  margin: 15px;
 }
 .photo__modal--avatar img {
   border-radius: 30px;
