@@ -16,7 +16,7 @@ const Form: FC = () => {
     if (inputValue.length < 3) {
       return;
     }
-    const matchesPhotos: any = getPhotosByQuery(inputValue);
+    const matchesPhotos:any= getPhotosByQuery(inputValue);
     setSuggestions(matchesPhotos);
   };
   const debouncedChangeHandler = useMemo(
@@ -47,7 +47,7 @@ const Form: FC = () => {
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
       />
-      {suggestions.length &&
+      {suggestions.length !== 0 &&
         // eslint-disable-next-line
         suggestions.map((suggestion, i) => {
           if (suggestion.alt_description !== null) {
