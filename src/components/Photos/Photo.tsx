@@ -17,7 +17,7 @@ type PhotoProps = {
 const Photo = ({ showModal, data, photoIndex }: PhotoProps) => {
   return (
     <>
-      <div className="photo" onClick={showModal}>
+      <div className="photo flex justify-center" onClick={showModal}>
         <img alt={data.alt?.description} src={data.urls.small}></img>
       </div>
     </>
