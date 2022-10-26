@@ -9,12 +9,12 @@
 }
 .modal button {
   display: block;
-  margin: auto;
   cursor: pointer;
   padding: 0.5rem 5rem;
   background-color: transparent;
   border: 1px solid rgb(131, 131, 131);
   border-radius: 6px;
+  margin: 10px auto;
 }
 .photo__modal {
   display: flex;

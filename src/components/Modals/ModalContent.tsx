@@ -39,6 +39,7 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
         <div className="photo__modal--likes">
           <span>Likes</span>
           <p>{data.likes}</p>
+          <a href={data.urls.full} target="_blank" rel="noreferrer" download>Download</a>
         </div>
       </div>
       <div>
