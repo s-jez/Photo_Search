@@ -47,7 +47,7 @@ const Form: FC = () => {
     }
   };
   return (
-    <form className="text-white rounded-md bg-white">
+    <form className="text-white rounded-md bg-white overflow-hidden">
       <InputText
         id=""
         classes="input"
@@ -63,7 +63,7 @@ const Form: FC = () => {
           }
           return (
             <div
-              className="input-suggestion text-black p-3 cursor-pointer"
+              className="text-black p-3 cursor-pointer hover:bg-gray-100"
               key={i}
               onClick={() => onSuggestHandler(suggestion.query)}
             >

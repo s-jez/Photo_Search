@@ -9,6 +9,8 @@ type InputProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  ref?: React.RefObject<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 };
 
 const InputText = ({
@@ -17,8 +19,10 @@ const InputText = ({
   classes,
   onChange,
   onBlur,
+  onFocus,
   placeholder,
   onKeyDown,
+  ref,
 }: InputProps) => {
   return (
     <input
@@ -28,8 +32,10 @@ const InputText = ({
       className={classes}
       onChange={onChange}
       onBlur={onBlur}
+      onFocus={onFocus}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
+      ref={ref}
     />
   );
 };

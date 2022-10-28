@@ -1,10 +1,8 @@
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 10px;
 }
 .photo img {
-  width: 450px;
-  height: 450px;
   object-fit: cover;
 }
