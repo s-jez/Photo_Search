@@ -25,15 +25,15 @@ export type PhotoDataProps = {
 };
 
 const PhotoGallery = ({ data }: PhotoDataProps) => {
-  const [modalShow, setModalShow] = useState(false);
+  const [shouldShowModal, setShouldShowModal] = useState(false);
   // eslint-disable-next-line
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  const toggleModal = () => setModalShow((prevState) => !prevState);
+  const toggleModal = () => setShouldShowModal((prevState) => !prevState);
 
   const handleClickHandler = (i: number) => setPhotoIndex(i);
 
-  if (modalShow) {
+  if (shouldShowModal) {
     return <Modal handleClose={toggleModal} data={data[photoIndex]} />;
   }
   return (

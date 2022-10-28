@@ -7,6 +7,7 @@ import debounce from "lodash.debounce";
 const Form: FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [autoComplete, setAutoComplete] = useState<any[]>([]);
 
   const navigate = useNavigate();
 
@@ -15,21 +16,22 @@ const Form: FC = () => {
     if (inputValue.length < 3) {
       return;
     }
-    const matchesPhotos: any = getPhotosByQuery(inputValue);
-    setSuggestions(matchesPhotos);
   };
   const debouncedChangeHandler = useMemo(
     () => debounce(inputChangeHandler, 300),
     // eslint-disable-next-line
     []
   );
-  // (async () => {
-  //   const getPhotosSuggestions = async () => {
-  //     const matchesPhotos = await getPhotosByQuery(inputValue);
-  //     console.log(matchesPhotos);
-  //   };
-  //   getPhotosSuggestions();
-  // })();
+  (async () => {
+    const getPhotosSuggestions = async () => {
+      const matchesPhotos = await getPhotosByQuery(inputValue);
+      setAutoComplete(matchesPhotos?.autocomplete);
+      inputValue.length >= 3
+        ? setSuggestions(autoComplete)
+        : setSuggestions([]);
+    };
+    getPhotosSuggestions();
+  })();
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();
@@ -53,22 +55,23 @@ const Form: FC = () => {
         placeholder="Search free high-resolution photos"
         onKeyDown={handleKeyDown}
       />
-      {suggestions.length !== 0 &&
+      {suggestions.length > 0 &&
         // eslint-disable-next-line
-        suggestions.map((suggestion, i) => {
-          if (suggestion.alt_description !== null) {
-            return (
-              <div
-                className="input-suggestion"
-                key={i}
-                onClick={() => onSuggestHandler(suggestion)}
-              >
-                <a href="/photos">{suggestion.alt_description}</a>
-              </div>
-            );
+        suggestions?.map((suggestion, i) => {
+          if (suggestion.query === null) {
+            return null;
           }
+          return (
+            <div
+              className="input-suggestion text-black p-3 cursor-pointer"
+              key={i}
+              onClick={() => onSuggestHandler(suggestion.query)}
+            >
+              {suggestion.query}
+            </div>
+          );
         })}
-      {suggestions.length === 0 && inputValue !== "" && (
+      {suggestions.length === 0 && inputValue.length > 0 && (
         <div className="text-black text-base p-3 cursor-pointer">
           There is no hint!
         </div>
