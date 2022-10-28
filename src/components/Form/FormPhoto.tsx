@@ -107,7 +107,6 @@ const FormPhoto: FC = () => {
           )}
         </div>
       </form>
-      <div className="font-bold text-xl m-5">Results for: {inputValue}</div>
       <PhotoGallery data={data} />
     </div>
   );
