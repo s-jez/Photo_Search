@@ -3,7 +3,7 @@ import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
 
 export type ModalProps = {
-  handleClose: React.MouseEventHandler<HTMLButtonElement>;
+  handleClose: React.MouseEventHandler<HTMLElement>;
   data: {
     urls: {
       full: string;
@@ -24,7 +24,7 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
   return (
     <div className="modal">
       <span onClick={handleClose} className="cursor-pointer">
-        <AiOutlineClose />
+        <AiOutlineClose size={22} />
       </span>
 
       <div style={{ position: "relative", height: "auto" }}>

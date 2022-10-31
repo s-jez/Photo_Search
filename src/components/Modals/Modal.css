@@ -1,12 +1,20 @@
 .modal {
   position: absolute;
-  width: 60%;
+  width: 50%;
   height: 100%;
-  padding: 5rem;
+  padding: 5rem 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+}
+.modal:hover {
+  cursor: zoom-out;
+}
+.photo__modal:hover,
+.photo__modal--avatar:hover,
+.photo__modal--likes:hover {
+  cursor: default;
 }
 .modal button {
   display: block;

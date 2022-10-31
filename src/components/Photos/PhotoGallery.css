@@ -1,8 +1,10 @@
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 10px;
+  column-count: 3;
 }
 .photo img {
+  margin: 8px;
   object-fit: cover;
+}
+.photo img:hover {
+  cursor: zoom-in;
 }
