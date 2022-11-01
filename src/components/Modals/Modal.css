@@ -28,9 +28,8 @@
   justify-content: center;
 }
 .photo__modal img {
-  width: 1200px;
-  height: 600px;
   object-fit: cover;
+  max-height: 650px;
 }
 .photo-modal {
   max-width: 1440px;
