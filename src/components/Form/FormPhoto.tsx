@@ -84,27 +84,29 @@ const FormPhoto: FC = () => {
             onFocus={onFocus}
             onBlur={onBlur}
           />
-          {suggestions.length > 0 &&
-            // eslint-disable-next-line
-            suggestions?.map((suggestion, i) => {
-              if (suggestion.query === null) {
-                return null;
-              }
-              return (
-                <div
-                  className="w-128 text-black bg-white p-3 cursor-pointer hover:bg-gray-100 shadow-lg shadow-gray-500/40"
-                  key={i}
-                  onClick={() => onSuggestHandler(suggestion.query)}
-                >
-                  {suggestion.query}
-                </div>
-              );
-            })}
-          {suggestions.length === 0 && focused && inputValue.length > 0 && (
-            <div className="text-black text-base p-3 cursor-pointer shadow-lg shadow-gray-500/40">
-              There is no hint!
-            </div>
-          )}
+          <div className="absolute m-auto right-0 w-1/4 left-0 top-20 w-300 rounded-md">
+            {suggestions.length > 0 &&
+              // eslint-disable-next-line
+              suggestions?.map((suggestion, i) => {
+                if (suggestion.query === null) {
+                  return null;
+                }
+                return (
+                  <div
+                    className="w-128 text-black bg-white p-3 cursor-pointer hover:bg-gray-100 shadow-lg shadow-gray-500/40"
+                    key={i}
+                    onClick={() => onSuggestHandler(suggestion.query)}
+                  >
+                    {suggestion.query}
+                  </div>
+                );
+              })}
+            {suggestions.length === 0 && focused && inputValue.length > 0 && (
+              <div className="text-black text-base cursor-pointer p-3 bg-white shadow-lg shadow-gray-500/40">
+                There is no hint!
+              </div>
+            )}
+          </div>
         </div>
       </form>
       <PhotoGallery data={data} />

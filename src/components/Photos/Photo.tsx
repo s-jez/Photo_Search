@@ -1,5 +1,4 @@
 import React from "react";
-import "./PhotoGallery.css";
 
 type PhotoProps = {
   showModal: React.MouseEventHandler<HTMLDivElement>;
@@ -16,15 +15,12 @@ type PhotoProps = {
 
 const Photo = ({ showModal, data, photoIndex }: PhotoProps) => {
   return (
-    <>
-      <div className="photo flex justify-center" onClick={showModal}>
-        <img
-          alt={data.alt?.description}
-          src={data.urls.small}
-          className="photo"
-        ></img>
-      </div>
-    </>
+    <img
+      alt={data.alt?.description}
+      src={data.urls.small}
+      className="photo flex justify-center my-5 cursor-pointer object-cover hover:cursor-zoom-in"
+      onClick={showModal}
+    ></img>
   );
 };
 export default Photo;

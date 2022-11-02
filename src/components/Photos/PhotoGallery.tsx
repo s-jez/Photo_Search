@@ -2,7 +2,6 @@ import React from "react";
 import Photo from "./Photo";
 import Modal from "components/Modals/Modal";
 import { useState } from "react";
-import "./PhotoGallery.css";
 
 export type PhotoDataProps = {
   data: {
@@ -37,7 +36,7 @@ const PhotoGallery = ({ data }: PhotoDataProps) => {
     return <Modal handleClose={toggleModal} data={data[photoIndex]} />;
   }
   return (
-    <ul className="gallery max-w-screen-xl gap-y-2.5 list-none">
+    <ul className="max-w-screen-xl gap-y-2.5 list-none columns-3">
       {data?.map((item, i) => (
         <li key={i} onClick={() => handleClickHandler(i)}>
           <Photo data={item} photoIndex={i} showModal={toggleModal} />

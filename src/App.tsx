@@ -1,4 +1,3 @@
-
 import React, { Fragment, FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GalleryContent from "./pages/GalleryContent";

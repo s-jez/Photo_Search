@@ -1,5 +1,5 @@
 .input {
-  width: 500px;
+  width: 480px;
   height: 45px;
   font-size: 1rem;
   box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.3);
@@ -16,13 +16,8 @@
     width: 350px;
   }
 }
-@media (max-width: 470px) {
+@media (max-width: 350px) {
   .input {
-    width: 300px;
-  }
-}
-@media (max-width: 400px) {
-  .input {
-    width: 200px;
+    width: 250px;
   }
 }
