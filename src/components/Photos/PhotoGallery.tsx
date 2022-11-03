@@ -1,35 +1,9 @@
 import React from "react";
 import Photo from "./Photo";
 import Modal from "components/Modals/Modal";
-import { useState } from "react";
+import { useState, FC } from "react";
 
-// Najlepiej rozbić to na PhotoData jako pojedynczy typ i dodać tutaj
-
-// interface Props {
-//     photos: PhotoData;
-// }
-// Korzystasz z podobnego typu w kilku komponentach stwórz jeden globalny
-export type PhotoDataProps = {
-  data: {
-    alt: {
-      description: string;
-    };
-    urls: {
-      small: string;
-      full: string;
-    };
-    alt_description: string;
-    likes: number;
-    user: {
-      profile_image: {
-        small: string;
-      };
-      username: string;
-    };
-  }[];
-};
-// Dodaj FC
-const PhotoGallery = ({ data }: PhotoDataProps) => {
+const PhotoGallery: FC<PhotoData> = ({ data }) => {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 

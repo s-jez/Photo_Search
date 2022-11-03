@@ -1,11 +1,17 @@
-import React, { useEffect, useState, useMemo, FC, FormEvent, ChangeEvent } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  FC,
+  FormEvent,
+  ChangeEvent,
+} from "react";
 import { useLocation } from "react-router-dom";
 import InputText from "components/Input/InputText";
 import PhotoGallery from "components/Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
 import debounce from "lodash.debounce";
 import { getPhotos, getPhotosByQuery } from "components/modules/services";
-
 
 const FormPhoto: FC = () => {
   const {
@@ -18,7 +24,7 @@ const FormPhoto: FC = () => {
 
   // ANY DO ZMIANY!
   const [suggestions, setSuggestions] = useState<any[]>([]);
-  const [autoComplete, setAutoComplete] = useState<any[]>([]);
+  const [autoComplete, setAutoComplete] = useState<string[]>([]);
 
   const [focused, setFocused] = useState(false);
 
