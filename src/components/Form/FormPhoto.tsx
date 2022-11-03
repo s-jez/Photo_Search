@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useMemo, FC } from "react";
+import React, { useEffect, useState, useMemo, FC, FormEvent, ChangeEvent } from "react";
 import { useLocation } from "react-router-dom";
 import InputText from "components/Input/InputText";
 import PhotoGallery from "components/Photos/PhotoGallery";
 import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
 import debounce from "lodash.debounce";
 import { getPhotos, getPhotosByQuery } from "components/modules/services";
+
 
 const FormPhoto: FC = () => {
   const {
@@ -15,21 +16,25 @@ const FormPhoto: FC = () => {
   const [data, setData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(true);
 
+  // ANY DO ZMIANY!
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [autoComplete, setAutoComplete] = useState<any[]>([]);
 
   const [focused, setFocused] = useState(false);
 
-  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmit(true);
   };
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setIsSubmit(false);
   };
+
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
+
   (async () => {
     const getPhotosSuggestions = async () => {
       const matchesPhotos = await getPhotosByQuery(inputValue);
@@ -42,16 +47,19 @@ const FormPhoto: FC = () => {
     };
     getPhotosSuggestions();
   })();
+
   const onSuggestHandler = (text: string) => {
     setSuggestions([]);
     setInputValue(text);
     setIsSubmit(true);
   };
+
   const debouncedChangeHandler = useMemo(
     () => debounce(inputChangeHandler, 300),
     // eslint-disable-next-line
     []
   );
+
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();

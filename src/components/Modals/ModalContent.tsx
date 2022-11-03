@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC, MouseEventHandler } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 export type ModalProps = {
-  handleClose: React.MouseEventHandler<HTMLElement>;
+  handleClose: MouseEventHandler<HTMLElement>;
   data: {
     urls: {
       full: string;
@@ -18,9 +18,8 @@ export type ModalProps = {
   };
 };
 
-const ModalContent = ({ handleClose, data }: ModalProps) => {
-  // eslint-disable-next-line
-  return (
+// możesz zrobić coś takiego:
+const ModalContent: FC<ModalProps> = ({ handleClose, data }) => (
     <div
       className="fixed	w-full h-full bg-black/[.8] cursor-zoom-out"
       onClick={handleClose}
@@ -63,6 +62,6 @@ const ModalContent = ({ handleClose, data }: ModalProps) => {
         </div>
       </div>
     </div>
-  );
-};
+);
+
 export default ModalContent;

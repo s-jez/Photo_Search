@@ -3,6 +3,12 @@ import Photo from "./Photo";
 import Modal from "components/Modals/Modal";
 import { useState } from "react";
 
+// Najlepiej rozbić to na PhotoData jako pojedynczy typ i dodać tutaj
+
+// interface Props {
+//     photos: PhotoData;
+// }
+// Korzystasz z podobnego typu w kilku komponentach stwórz jeden globalny
 export type PhotoDataProps = {
   data: {
     alt: {
@@ -22,10 +28,9 @@ export type PhotoDataProps = {
     };
   }[];
 };
-
+// Dodaj FC
 const PhotoGallery = ({ data }: PhotoDataProps) => {
   const [shouldShowModal, setShouldShowModal] = useState(false);
-  // eslint-disable-next-line
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const toggleModal = () => setShouldShowModal((prevState) => !prevState);
@@ -35,6 +40,7 @@ const PhotoGallery = ({ data }: PhotoDataProps) => {
   if (shouldShowModal) {
     return <Modal handleClose={toggleModal} data={data[photoIndex]} />;
   }
+
   return (
     <ul className="max-w-screen-xl gap-y-2.5 list-none columns-3">
       {data?.map((item, i) => (
