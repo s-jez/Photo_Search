@@ -20,11 +20,7 @@ const MainContent = () => {
           className="flex flex-col items-center justify-center h-full bg-center bg-no-repeat bg-cover"
           style={{ backgroundImage: `url(${randomPhoto})` }}
         >
-<<<<<<< HEAD
-          <div className="flex flex-col w-full md:w-auto items-center p-24 bg-black/[.6] rounded-lg shadow-lg ">
-=======
           <div className="flex flex-col w-full md:w-auto items-center sm:w-full p-24 bg-black/[.6] rounded-lg shadow-lg ">
->>>>>>> 1be2e3b00db933824cd5614914048f534f31bd72
             <h1 className="text-5xl font-bold">Unsplash</h1>
             <p className="mx-auto m-3">
               The internet's source of{" "}
