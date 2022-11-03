@@ -7,12 +7,14 @@ const MainContent = () => {
   const [randomPhoto, setRandomPhoto] = useState(
     "https://i.imgur.com/O0eAkcG.jpg"
   );
+  
   useEffect(() => {
     (async () => {
       const randomPhoto = await getRandomPhoto();
       setRandomPhoto(randomPhoto.urls.full);
     })();
   }, []);
+  
   return (
     <>
       <div className="h-48 min-h-screen text-white">

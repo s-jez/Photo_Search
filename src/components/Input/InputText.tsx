@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, RefObject } from "react";
 import "./InputText.css";
 
 type InputProps = {
@@ -6,12 +6,16 @@ type InputProps = {
   id?: string;
   placeholder?: string;
   classes?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  ref?: React.RefObject<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  // lepiej importować typy bezpośrednio
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  ref?: RefObject<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 };
+// do przekazywania ref najlepiej używać 
+// https://pl.reactjs.org/docs/forwarding-refs.html 
+// https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forward_and_create_ref/e
 
 const InputText = ({
   id,
@@ -23,8 +27,7 @@ const InputText = ({
   placeholder,
   onKeyDown,
   ref,
-}: InputProps) => {
-  return (
+}: InputProps) => (
     <input
       type="text"
       id={id}
@@ -37,7 +40,7 @@ const InputText = ({
       onKeyDown={onKeyDown}
       ref={ref}
     />
-  );
-};
+);
+
 
 export default InputText;
