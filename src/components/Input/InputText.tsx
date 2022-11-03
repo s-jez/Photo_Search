@@ -1,4 +1,9 @@
-import React from "react";
+import React, {
+  ChangeEventHandler,
+  FocusEventHandler,
+  KeyboardEventHandler,
+  RefObject,
+} from "react";
 import "./InputText.css";
 
 type InputProps = {
@@ -6,11 +11,11 @@ type InputProps = {
   id?: string;
   placeholder?: string;
   classes?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  ref?: React.RefObject<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  ref?: RefObject<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 };
 
 const InputText = ({
@@ -23,21 +28,19 @@ const InputText = ({
   placeholder,
   onKeyDown,
   ref,
-}: InputProps) => {
-  return (
-    <input
-      type="text"
-      id={id}
-      value={value}
-      className={classes}
-      onChange={onChange}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      placeholder={placeholder}
-      onKeyDown={onKeyDown}
-      ref={ref}
-    />
-  );
-};
+}: InputProps) => (
+  <input
+    type="text"
+    id={id}
+    value={value}
+    className={classes}
+    onChange={onChange}
+    onBlur={onBlur}
+    onFocus={onFocus}
+    placeholder={placeholder}
+    onKeyDown={onKeyDown}
+    ref={ref}
+  />
+);
 
 export default InputText;
