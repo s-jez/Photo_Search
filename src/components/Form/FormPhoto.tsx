@@ -41,7 +41,7 @@ const FormPhoto: FC = () => {
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
 
-  (async () => {
+  useEffect(() => {
     const getPhotosSuggestions = async () => {
       const matchesPhotos = await getPhotosByQuery(inputValue);
       setAutoComplete(matchesPhotos?.autocomplete);
@@ -52,7 +52,8 @@ const FormPhoto: FC = () => {
       }
     };
     getPhotosSuggestions();
-  })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
 
   const onSuggestHandler = (text: string) => {
     setSuggestions([]);
@@ -81,7 +82,8 @@ const FormPhoto: FC = () => {
       return;
     }
     getPhotos(SEARCH_PHOTOS_URL).then((data) => setData(data));
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
   return (
     <div className="mx-auto max-w-screen-xl">
       <form
