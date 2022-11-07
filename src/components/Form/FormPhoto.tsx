@@ -1,89 +1,21 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  FC,
-  FormEvent,
-  ChangeEvent,
-} from "react";
+import React, { useState, FC, FormEvent } from "react";
 import { useLocation } from "react-router-dom";
-import InputText from "components/Input/InputText";
 import PhotoGallery from "components/Photos/PhotoGallery";
-import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
-import debounce from "lodash.debounce";
-import { getPhotos, getPhotosByQuery } from "components/modules/services";
+import SearchInput from "components/Input/SearchInput";
 
 const FormPhoto: FC = () => {
   const {
     state: { text },
   } = useLocation();
 
-  const [inputValue, setInputValue] = useState(text);
   const [data, setData] = useState([]);
-  const [isSubmit, setIsSubmit] = useState(true);
-
-  // ANY DO ZMIANY!
-  const [suggestions, setSuggestions] = useState<any[]>([]);
-  const [autoComplete, setAutoComplete] = useState<string[]>([]);
-
-  const [focused, setFocused] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmit(true);
   };
 
-  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    setIsSubmit(false);
-  };
-
-  const onFocus = () => setFocused(true);
-  const onBlur = () => setFocused(false);
-
-  useEffect(() => {
-    const getPhotosSuggestions = async () => {
-      const matchesPhotos = await getPhotosByQuery(inputValue);
-      setAutoComplete(matchesPhotos?.autocomplete);
-      if (focused) {
-        inputValue.length >= 3
-          ? setSuggestions(autoComplete)
-          : setSuggestions([]);
-      }
-    };
-    getPhotosSuggestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue]);
-
-  const onSuggestHandler = (text: string) => {
-    setSuggestions([]);
-    setInputValue(text);
-    setIsSubmit(true);
-  };
-
-  const debouncedChangeHandler = useMemo(
-    () => debounce(inputChangeHandler, 300),
-    // eslint-disable-next-line
-    []
-  );
-
-  useEffect(() => {
-    return () => {
-      debouncedChangeHandler.cancel();
-    };
-    // eslint-disable-next-line
-  }, []);
-
-  let SEARCH_PHOTOS_URL =
-    UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
-
-  useEffect(() => {
-    if (!isSubmit) {
-      return;
-    }
-    getPhotos(SEARCH_PHOTOS_URL).then((data) => setData(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue]);
   return (
     <div className="mx-auto max-w-screen-xl">
       <form
@@ -91,38 +23,12 @@ const FormPhoto: FC = () => {
         className="text-white rounded-md overflow-hidden flex justify-center p-5"
       >
         <div className="flex flex-col">
-          <InputText
-            id=""
-            value={inputValue}
-            onChange={inputChangeHandler}
-            classes="w-128 h-30 input rounded-xl bg-gray-200 border-slate-400 mx-auto outline-slate-50 m-2"
-            placeholder="Search for images..."
-            onFocus={onFocus}
-            onBlur={onBlur}
+          <SearchInput
+            size="small"
+            value={text}
+            dataStateSetter={setData}
+            submitStateSetter={setIsSubmit}
           />
-          <div className="absolute m-auto right-0 w-1/4 left-0 top-20 w-300 rounded-md">
-            {suggestions.length > 0 &&
-              // eslint-disable-next-line
-              suggestions?.map((suggestion, i) => {
-                if (suggestion.query === null) {
-                  return null;
-                }
-                return (
-                  <div
-                    className="w-128 text-black bg-white p-3 cursor-pointer hover:bg-gray-100 shadow-lg shadow-gray-500/40"
-                    key={i}
-                    onClick={() => onSuggestHandler(suggestion.query)}
-                  >
-                    {suggestion.query}
-                  </div>
-                );
-              })}
-            {suggestions.length === 0 && focused && inputValue.length > 0 && (
-              <div className="text-black text-base cursor-pointer p-3 bg-white shadow-lg shadow-gray-500/40">
-                There is no hint!
-              </div>
-            )}
-          </div>
         </div>
       </form>
       <PhotoGallery data={data} />
