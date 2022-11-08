@@ -1,5 +1,5 @@
 import { getPhotos, getPhotosByQuery } from "components/modules/services";
-import { UNSPLASH_KEY, UNSPLASH_URL } from "config/urls";
+import { SEARCH_PHOTOS_URL } from "config/urls";
 import debounce from "lodash.debounce";
 import React, {
   ChangeEvent,
@@ -17,31 +17,34 @@ type SearchInputProps = {
   size: "small" | "big";
   value?: string;
   dataStateSetter?: Dispatch<SetStateAction<never[]>>;
-  submitStateSetter?: any;
 };
 
-const SearchInput = ({
-  size,
-  value,
-  dataStateSetter,
-  submitStateSetter,
-}: SearchInputProps) => {
+const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
   const [inputValue, setInputValue] = useState<string | any>(value);
   const [suggestions, setSuggestions] = useState<{ query: string }[]>([]);
   const [isSuggestionsLoading, setIsSuggestionsLoading] = useState(false);
-  const [autoComplete, setAutoComplete] = useState<string[] | any>([]);
-  const [focused, setFocused] = useState(false);
 
-  const [dataState, setDataState] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [dataState, setDataState] = useState([]);
 
   const navigate = useNavigate();
 
-  let SEARCH_PHOTOS_URL =
-    UNSPLASH_URL + "/search/photos/" + UNSPLASH_KEY + `&query=${inputValue}`;
+  const getPhotosSuggestions = async (value: string) => {
+    const matchesPhotos = await getPhotosByQuery(value);
+    setSuggestions(matchesPhotos?.autocomplete || []);
+    setIsSuggestionsLoading(false);
+  };
+
+  const debouncedChangeHandler = useMemo(
+    () => debounce(getPhotosSuggestions, 300),
+    // eslint-disable-next-line
+    []
+  );
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     setInputValue(value);
     setIsSubmit(false);
     setSuggestions([]);
@@ -49,69 +52,62 @@ const SearchInput = ({
     if (value.length < 3) {
       return;
     }
+
     setIsSuggestionsLoading(true);
+    debouncedChangeHandler(value);
   };
-  const debouncedChangeHandler = useMemo(
-    () => debounce(inputChangeHandler, 300),
-    // eslint-disable-next-line
-    []
-  );
+
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     if (dataStateSetter) {
       dataStateSetter(dataState);
     }
   }, [dataStateSetter, dataState]);
-  useEffect(() => {
-    if (isSubmit) {
-      submitStateSetter(isSubmit);
-    }
-  }, [submitStateSetter, isSubmit]);
-
-  useEffect(() => {
-    const getPhotosSuggestions = async () => {
-      const matchesPhotos = await getPhotosByQuery(inputValue);
-      setAutoComplete(matchesPhotos?.autocomplete);
-      if (focused) {
-        inputValue.length >= 3
-          ? setSuggestions(autoComplete)
-          : setSuggestions([]);
-      }
-      setIsSuggestionsLoading(false);
-    };
-    getPhotosSuggestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue]);
 
   const onSuggestHandler = (text: string) => {
     navigate(`/photos`, { state: { text: text } });
     setIsSubmit(true);
   };
+
   const onSubmitHandler = (text: string) => {
     setSuggestions([]);
     setInputValue(text);
     setIsSubmit(true);
   };
+
   const handleKeyDown = (ev: KeyboardEvent<HTMLInputElement>) => {
     if (ev.key === "Enter") {
       navigate(`/photos`, { state: { text: inputValue } });
       setIsSubmit(true);
     }
   };
+
   useEffect(() => {
-    if (isSubmit) {
-      getPhotos(SEARCH_PHOTOS_URL).then((data) => setDataState(data));
+    getPhotos(SEARCH_PHOTOS_URL + inputValue).then((data) =>
+      setDataState(data)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!isSubmit) {
+      return;
     }
+    getPhotos(SEARCH_PHOTOS_URL + inputValue).then((data) =>
+      setDataState(data)
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
+
   return (
     <>
       {size === "big" ? (
@@ -168,13 +164,15 @@ const SearchInput = ({
               );
             })
           : null}
+
         {inputValue && inputValue.length < 3 ? (
           <div className="text-black text-base p-3 cursor-pointer bg-white">
             Minimum 3 characters
           </div>
         ) : null}
+
         {isSuggestionsLoading ? (
-          <div className="text-black text-base p-3 cursor-pointer">
+          <div className="text-black text-base p-3 cursor-pointer bg-white">
             Loading...
           </div>
         ) : null}

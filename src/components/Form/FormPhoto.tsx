@@ -9,11 +9,9 @@ const FormPhoto: FC = () => {
   } = useLocation();
 
   const [data, setData] = useState([]);
-  const [isSubmit, setIsSubmit] = useState(false);
 
   const formSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmit(true);
   };
 
   return (
@@ -23,12 +21,7 @@ const FormPhoto: FC = () => {
         className="text-white rounded-md overflow-hidden flex justify-center p-5"
       >
         <div className="flex flex-col">
-          <SearchInput
-            size="small"
-            value={text}
-            dataStateSetter={setData}
-            submitStateSetter={setIsSubmit}
-          />
+          <SearchInput size="small" value={text} dataStateSetter={setData} />
         </div>
       </form>
       <PhotoGallery data={data} />
