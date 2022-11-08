@@ -1,17 +1,5 @@
 import React, { FC } from "react";
 
-type PhotoProps = {
-  showModal: React.MouseEventHandler<HTMLDivElement>;
-  photoIndex: number;
-  data: {
-    alt: {
-      description: string;
-    };
-    urls: {
-      small: string;
-    };
-  };
-};
 const Photo: FC<PhotoProps> = ({ showModal, data }) => (
   <img
     alt={data.alt?.description}

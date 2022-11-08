@@ -20,4 +20,9 @@ declare global {
       };
     }[];
   };
+  type PhotoProps = {
+    data: PhotoData.data;
+    showModal: React.MouseEventHandler<HTMLDivElement>;
+    photoIndex: number;
+  };
 }
