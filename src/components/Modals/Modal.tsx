@@ -1,6 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import ModalContent, { ModalProps } from "./ModalContent";
+import ModalContent from "./ModalContent";
 
 const Modal = ({ handleClose, data }: ModalProps) =>
   createPortal(
