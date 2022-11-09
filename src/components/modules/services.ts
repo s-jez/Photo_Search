@@ -8,6 +8,7 @@ export const getPhotos = async (url: string) => {
 
 export const getPhotosByQuery = async (query: string) => {
   try {
+    // ten url też można jako zmienną typu UNSPLASH_URL='https://unsplash.com' UNSPLASH_API_URL='https://api.unsplash.com'
     const res = await fetch(`https://unsplash.com/nautocomplete/${query}`, {
       method: "GET"
     });
