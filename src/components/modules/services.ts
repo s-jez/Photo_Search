@@ -1,4 +1,4 @@
-import { UNSPLASH_KEY, UNSPLASH_URL } from "../../config/urls";
+import { UNSPLASH_KEY, UNSPLASH_URL, UNSPLASH_API_URL } from "../../config/urls";
 
 export const getPhotos = async (url: string) => {
   const res = await fetch(url);
@@ -8,7 +8,8 @@ export const getPhotos = async (url: string) => {
 
 export const getPhotosByQuery = async (query: string) => {
   try {
-    const res = await fetch(`https://unsplash.com/nautocomplete/${query}`, {
+    // ten url też można jako zmienną typu UNSPLASH_URL='https://unsplash.com' UNSPLASH_API_URL='https://api.unsplash.com'
+    const res = await fetch(`${UNSPLASH_URL}/nautocomplete/${query}`, {
       method: "GET"
     });
     return res.json();
@@ -18,6 +19,6 @@ export const getPhotosByQuery = async (query: string) => {
 };
 
 export const getRandomPhoto = async () => {
-  const res = await fetch(UNSPLASH_URL + "/photos/random" + UNSPLASH_KEY);
+  const res = await fetch(UNSPLASH_API_URL + "/photos/random" + UNSPLASH_KEY);
   return res.json();
 };

@@ -1,22 +1,5 @@
-import React, {
-  ChangeEventHandler,
-  FocusEventHandler,
-  KeyboardEventHandler,
-  RefObject,
-} from "react";
+import React from "react";
 import "./InputText.css";
-
-type InputProps = {
-  value?: number | string | readonly string[] | undefined;
-  id?: string;
-  placeholder?: string;
-  classes?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  onBlur?: FocusEventHandler<HTMLInputElement>;
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
-  ref?: RefObject<HTMLInputElement>;
-  onFocus?: FocusEventHandler<HTMLInputElement>;
-};
 
 const InputText = ({
   id,

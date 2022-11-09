@@ -1,22 +1,5 @@
-import React, { FC, MouseEventHandler } from "react";
+import React, { FC } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-
-export type ModalProps = {
-  handleClose: MouseEventHandler<HTMLElement>;
-  data: {
-    urls: {
-      full: string;
-    };
-    alt_description: string;
-    likes: number;
-    user: {
-      profile_image: {
-        small: string;
-      };
-      username: string;
-    };
-  };
-};
 
 const ModalContent: FC<ModalProps> = ({ handleClose, data }) => (
   <div
