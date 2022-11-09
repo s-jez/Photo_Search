@@ -1,5 +1,5 @@
-import React, { FC } from "react";
 import SearchInput from "components/Input/SearchInput";
+import React, { FC } from "react";
 
 const Form: FC = () => {
   return (

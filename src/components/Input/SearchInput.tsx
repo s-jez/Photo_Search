@@ -20,14 +20,13 @@ type SearchInputProps = {
 };
 
 const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
-    // any! 
-  const [inputValue, setInputValue] = useState<string | any>(value);
+  const [inputValue, setInputValue] = useState<string | undefined>(value);
   const [suggestions, setSuggestions] = useState<{ query: string }[]>([]);
   const [isSuggestionsLoading, setIsSuggestionsLoading] = useState(false);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
-  const [dataState, setDataState] = useState([]);
+  const [, setDataState] = useState([]);
 
   const navigate = useNavigate();
 
@@ -65,11 +64,10 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (dataStateSetter) {
-      dataStateSetter(dataState);
-    }
-  }, [dataStateSetter, dataState]);
+  const setData = (data: never[]) => {
+    setDataState(data);
+    dataStateSetter?.(data);
+  };
 
   const onSuggestHandler = (text: string) => {
     navigate(`/photos`, { state: { text: text } });
@@ -90,9 +88,7 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
   };
 
   useEffect(() => {
-    getPhotos(SEARCH_PHOTOS_URL + inputValue).then((data) =>
-      setDataState(data)
-    );
+    getPhotos(SEARCH_PHOTOS_URL + inputValue).then((data) => setData(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -100,14 +96,18 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
     if (!isSubmit) {
       return;
     }
-    getPhotos(SEARCH_PHOTOS_URL + inputValue).then((data) =>
-      setDataState(data)
-    );
+    getPhotos(SEARCH_PHOTOS_URL + inputValue).then((data) => setData(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
+
+  let noHintValue =
+    !suggestions.length &&
+    !isSuggestionsLoading &&
+    focused &&
+    inputValue!.length >= 3;
 
   return (
     <>
@@ -153,12 +153,9 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
                   }
                   key={i}
                   onClick={() => {
-                    // hmm?
-                    if (size === "small") {
-                      onSubmitHandler(suggestion.query);
-                    } else {
-                      onSuggestHandler(suggestion.query);
-                    }
+                    size === "small"
+                      ? onSubmitHandler(suggestion.query)
+                      : onSuggestHandler(suggestion.query);
                   }}
                 >
                   {suggestion.query}
@@ -178,11 +175,8 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
             Loading...
           </div>
         ) : null}
-        {/* to wszystko można umieścić w jednej zmiennej  */}
-        {!suggestions.length &&
-        !isSuggestionsLoading &&
-        focused &&
-        inputValue.length >= 3 ? (
+
+        {noHintValue ? (
           <div className="text-black text-base p-3 cursor-pointer bg-white">
             There is no hint!
           </div>
