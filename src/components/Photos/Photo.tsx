@@ -6,7 +6,7 @@ const Photo: FC<PhotoProps> = ({ showModal, data }) => (
     src={data.urls.small}
     className="photo flex justify-center my-5 cursor-pointer object-cover hover:cursor-zoom-in"
     onClick={showModal}
-  ></img>
+  />
 );
 
 export default Photo;

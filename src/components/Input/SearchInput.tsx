@@ -20,6 +20,7 @@ type SearchInputProps = {
 };
 
 const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
+    // any! 
   const [inputValue, setInputValue] = useState<string | any>(value);
   const [suggestions, setSuggestions] = useState<{ query: string }[]>([]);
   const [isSuggestionsLoading, setIsSuggestionsLoading] = useState(false);
@@ -152,6 +153,7 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
                   }
                   key={i}
                   onClick={() => {
+                    // hmm?
                     if (size === "small") {
                       onSubmitHandler(suggestion.query);
                     } else {
@@ -176,7 +178,7 @@ const SearchInput = ({ size, value, dataStateSetter }: SearchInputProps) => {
             Loading...
           </div>
         ) : null}
-
+        {/* to wszystko można umieścić w jednej zmiennej  */}
         {!suggestions.length &&
         !isSuggestionsLoading &&
         focused &&
