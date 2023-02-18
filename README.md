@@ -3,7 +3,12 @@
 
 This project purpose is searching images from Unsplash API.
 
-![Photo Search](https://user-images.githubusercontent.com/88712213/196763151-376474c2-76c0-4e05-be4b-1c0ad43a7717.png)
+![Photo Search](https://i.imgur.com/SlIV9xq.png)
+
+![Photo Search Dogs](https://i.imgur.com/Yl1DUPV.jpg)
+
+![Photo Search Popup](https://i.imgur.com/oh5MTYg.jpg)
+
 
 
 
